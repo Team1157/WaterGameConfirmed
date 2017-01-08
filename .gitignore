@@ -62,3 +62,7 @@ local.properties
 
 # Code Recommenders
 .recommenders/
+
+build.properties
+build.xml
+sysProps.xml
