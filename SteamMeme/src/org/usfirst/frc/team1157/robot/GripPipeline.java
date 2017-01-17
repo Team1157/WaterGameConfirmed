@@ -13,6 +13,7 @@ import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.vision.VisionPipeline;
 
 /**
@@ -39,9 +40,9 @@ public class GripPipeline implements VisionPipeline {
 	@Override	public void process(Mat source0) {
 		// Step HSL_Threshold0:
 		Mat hslThresholdInput = source0;
-		double[] hslThresholdHue = {0, 255};
-		double[] hslThresholdSaturation = {0, 255.0};
-		double[] hslThresholdLuminance = {0, 255.0};
+		double[] hslThresholdHue = {SmartDashboard.getNumber("Hlow",0), SmartDashboard.getNumber("Hhigh",255)};
+		double[] hslThresholdSaturation = {SmartDashboard.getNumber("Slow",0), SmartDashboard.getNumber("Shigh",255)};
+		double[] hslThresholdLuminance = {SmartDashboard.getNumber("Llow",0), SmartDashboard.getNumber("Lhigh",255)};
 //		double[] hslThresholdHue = {77.6978417266187, 92.45733788395904};
 //		double[] hslThresholdSaturation = {171.98741007194243, 255.0};
 //		double[] hslThresholdLuminance = {43.57014388489208, 255.0};

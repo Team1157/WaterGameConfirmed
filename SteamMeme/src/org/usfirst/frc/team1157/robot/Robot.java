@@ -61,6 +61,12 @@ public class Robot extends IterativeRobot {
 	    }
 	});
 	visionThread.start();
+	SmartDashboard.putNumber("Hlow",0);
+	SmartDashboard.putNumber("Hhigh",255);
+	SmartDashboard.putNumber("Slow",0);
+	SmartDashboard.putNumber("Shigh",255);
+	SmartDashboard.putNumber("Llow",0);
+	SmartDashboard.putNumber("Lhigh",255);
     }
 
     /**
