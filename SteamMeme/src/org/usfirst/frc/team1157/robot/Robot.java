@@ -4,6 +4,7 @@ package org.usfirst.frc.team1157.robot;
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team1157.robot.commands.ExampleCommand;
+import org.usfirst.frc.team1157.robot.subsystems.Arm1;
 import org.usfirst.frc.team1157.robot.subsystems.ExampleSubsystem;
 
 import edu.wpi.cscore.UsbCamera;
@@ -25,9 +26,10 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
  */
 public class Robot extends IterativeRobot {
 
-    public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+    public static final Arm1 arm1 = new Arm1();
     public static OI oi;
-
+    public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+    
     Command autonomousCommand;
     SendableChooser<Command> chooser = new SendableChooser<>();
 
