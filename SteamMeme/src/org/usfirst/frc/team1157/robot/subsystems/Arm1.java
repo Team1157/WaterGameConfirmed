@@ -2,7 +2,7 @@ package org.usfirst.frc.team1157.robot.subsystems;
 
 import org.usfirst.frc.team1157.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Arm1 extends Subsystem {
 	
-		Victor motor = RobotMap.Arm1Motor;
+		Jaguar motor = RobotMap.Arm1Motor;
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.

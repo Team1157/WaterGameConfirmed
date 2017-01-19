@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1157.robot;
 
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.Jaguar;
+
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -19,5 +20,5 @@ public class RobotMap {
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
 	
-	public static Victor Arm1Motor = new Victor(1);
+	public static Jaguar Arm1Motor = new Jaguar(1);
 }
