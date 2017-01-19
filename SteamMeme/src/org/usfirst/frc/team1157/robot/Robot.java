@@ -7,6 +7,7 @@ import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team1157.robot.commands.ExampleCommand;
+import org.usfirst.frc.team1157.robot.commands.armAuto;
 import org.usfirst.frc.team1157.robot.subsystems.Arm1;
 import org.usfirst.frc.team1157.robot.subsystems.ExampleSubsystem;
 
@@ -52,9 +53,10 @@ public class Robot extends IterativeRobot {
     @Override
     public void robotInit() {
 	oi = new OI();
-	chooser.addDefault("Default Auto", new ExampleCommand());
+	chooser.addDefault("Default Auto", new armAuto());
 	// chooser.addObject("My Auto", new MyAutoCommand());
 	SmartDashboard.putData("Auto mode", chooser);
+	
 	UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 	//camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
 
