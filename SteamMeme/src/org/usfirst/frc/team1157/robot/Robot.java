@@ -1,12 +1,16 @@
 //TODO:practicaly everything kappa
 package org.usfirst.frc.team1157.robot;
 
+import org.opencv.core.Mat;
+import org.opencv.core.Point;
 import org.opencv.core.Rect;
+import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team1157.robot.commands.ExampleCommand;
 import org.usfirst.frc.team1157.robot.subsystems.Arm1;
 import org.usfirst.frc.team1157.robot.subsystems.ExampleSubsystem;
 
+import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -54,12 +58,9 @@ public class Robot extends IterativeRobot {
 	UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 	//camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
 
-	visionThread = new VisionThread(camera, new GripPipeline(), GripPipeline -> {
+	visionThread = new VisionThread(camera, new GripPipelineJay(), GripPipeline -> {
 	    if (!GripPipeline.filterContoursOutput().isEmpty()) {
 		Rect r = Imgproc.boundingRect(GripPipeline.filterContoursOutput().get(0));
-		synchronized (imgLock) {
-		    centerX = r.x + (r.width / 2);
-		}
 	    }
 	});
 	visionThread.start();
