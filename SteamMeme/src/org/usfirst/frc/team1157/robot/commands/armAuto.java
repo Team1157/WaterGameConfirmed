@@ -10,6 +10,12 @@ public class armAuto extends CommandGroup {
     public armAuto() {
 	addSequential(new MoveArm1Down());
 	addSequential(new MoveArm1Up());
+	addSequential(new MoveArm1Down());
+	addSequential(new MoveArm1Up());
+	addSequential(new MoveArm1Down());
+	addSequential(new MoveArm1Up());
+	addSequential(new MoveArm1Down());
+	addSequential(new MoveArm1Up());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
