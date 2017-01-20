@@ -6,10 +6,10 @@ import org.opencv.core.Point;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
+import org.usfirst.frc.team1157.robot.commands.Arm1Wave;
 import org.usfirst.frc.team1157.robot.commands.ExampleCommand;
 
 import org.usfirst.frc.team1157.robot.commands.MoveArm1Up;
-import org.usfirst.frc.team1157.robot.commands.armAuto;
 import org.usfirst.frc.team1157.robot.subsystems.Arm1;
 import org.usfirst.frc.team1157.robot.subsystems.ExampleSubsystem;
 
@@ -57,7 +57,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 	oi = new OI();
 
-	chooser.addDefault("better auto", new armAuto());
+	chooser.addDefault("even better auto", new Arm1Wave());
 	chooser.addObject("arm 1", new MoveArm1Up());
 
 	SmartDashboard.putData("Auto mode", chooser);
