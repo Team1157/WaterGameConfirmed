@@ -21,4 +21,8 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 	
 	public static Jaguar Arm1Motor = new Jaguar(1);
+	public static int frontLeftMotor = 5;
+	public static int frontRightMotor = 6;
+	public static int backLeftMotor = 7;
+	public static int backRightMotor = 8;
 }

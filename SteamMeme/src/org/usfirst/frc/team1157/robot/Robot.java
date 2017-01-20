@@ -11,6 +11,7 @@ import org.usfirst.frc.team1157.robot.commands.ExampleCommand;
 
 import org.usfirst.frc.team1157.robot.commands.MoveArm1Up;
 import org.usfirst.frc.team1157.robot.subsystems.Arm1;
+import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team1157.robot.subsystems.ExampleSubsystem;
 
 import edu.wpi.cscore.CvSource;
@@ -49,6 +50,8 @@ public class Robot extends IterativeRobot {
 
     private final Object imgLock = new Object();
 
+    public static final DriveTrain driveTrain = new DriveTrain();
+    
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.

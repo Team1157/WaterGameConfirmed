@@ -11,7 +11,7 @@ import org.usfirst.frc.team1157.robot.commands.MoveArm1Up;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	Joystick stick = new Joystick(1);
+	public static Joystick stick = new Joystick(1);
 	Button button1 = new JoystickButton(stick, 3);
 	Button button2 = new JoystickButton(stick, 2);
 
