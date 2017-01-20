@@ -7,7 +7,9 @@ import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team1157.robot.commands.ExampleCommand;
-import org.usfirst.frc.team1157.robot.commands.armAuto;
+
+import org.usfirst.frc.team1157.robot.commands.MoveArm1Up;
+
 import org.usfirst.frc.team1157.robot.subsystems.Arm1;
 import org.usfirst.frc.team1157.robot.subsystems.ExampleSubsystem;
 
@@ -36,6 +38,7 @@ public class Robot extends IterativeRobot {
     public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
     
     Command autonomousCommand;
+    Command autonomousArm1Command;
     SendableChooser<Command> chooser = new SendableChooser<>();
 
     private static final int IMG_WIDTH = 1080;
@@ -53,8 +56,10 @@ public class Robot extends IterativeRobot {
     @Override
     public void robotInit() {
 	oi = new OI();
-	chooser.addDefault("Default Auto", new armAuto());
-	// chooser.addObject("My Auto", new MyAutoCommand());
+
+	chooser.addDefault("Default Auto", new ExampleCommand());
+	chooser.addObject("arm 1", new MoveArm1Up());
+
 	SmartDashboard.putData("Auto mode", chooser);
 	
 	UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
@@ -150,3 +155,4 @@ public class Robot extends IterativeRobot {
 	LiveWindow.run();
     }
 }
+
