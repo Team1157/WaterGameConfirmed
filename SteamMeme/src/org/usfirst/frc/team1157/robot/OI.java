@@ -5,8 +5,8 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team1157.robot.commands.GyroReset;
-import org.usfirst.frc.team1157.robot.commands.MoveArm1Down;
-import org.usfirst.frc.team1157.robot.commands.MoveArm1Up;
+import org.usfirst.frc.team1157.robot.commands.RollerDown;
+import org.usfirst.frc.team1157.robot.commands.RollerUp;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -19,8 +19,8 @@ public class OI {
 
 	
 	public OI() {
-		button1.whenPressed(new MoveArm1Up());
-		button2.whenPressed(new MoveArm1Down());
+		button1.whileHeld(new RollerUp());
+		button2.whileHeld(new RollerDown());
 		trigger.whenPressed(new GyroReset());
 	}
 	

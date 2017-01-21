@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class MoveArm1Up extends Command {
+public class RollerUp extends Command {
 
-    public MoveArm1Up() {
-    	requires(Robot.arm1);
+    public RollerUp() {
+    	requires(Robot.roller);
     	setTimeout(.9);
    	}
         // Use requires() here to declare subsystem dependencies
@@ -20,7 +20,7 @@ public class MoveArm1Up extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.arm1.up();
+    	Robot.roller.up();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -34,7 +34,7 @@ public class MoveArm1Up extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.arm1.stop();
+    	Robot.roller.stop();
     }
  
 

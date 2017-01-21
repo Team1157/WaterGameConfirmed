@@ -9,8 +9,8 @@ import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team1157.robot.commands.Arm1Wave;
 import org.usfirst.frc.team1157.robot.commands.ExampleCommand;
 
-import org.usfirst.frc.team1157.robot.commands.MoveArm1Up;
-import org.usfirst.frc.team1157.robot.subsystems.Arm1;
+import org.usfirst.frc.team1157.robot.commands.RollerUp;
+import org.usfirst.frc.team1157.robot.subsystems.Roller;
 import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team1157.robot.subsystems.ExampleSubsystem;
 
@@ -35,12 +35,11 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
  */
 public class Robot extends IterativeRobot {
 
-    public static final Arm1 arm1 = new Arm1();
+    public static final Roller roller = new Roller();
     public static OI oi;
     public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-    
     Command autonomousCommand;
-    Command autonomousArm1Command;
+
     SendableChooser<Command> chooser = new SendableChooser<>();
 
     private static final int IMG_WIDTH = 1080;
@@ -67,7 +66,7 @@ public class Robot extends IterativeRobot {
 	oi = new OI();
 
 	chooser.addDefault("even better auto", new Arm1Wave());
-	chooser.addObject("arm 1", new MoveArm1Up());
+	chooser.addObject("arm 1", new RollerUp());
 
 	SmartDashboard.putData("Auto mode", chooser);
 	
