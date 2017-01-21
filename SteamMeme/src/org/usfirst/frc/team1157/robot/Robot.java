@@ -16,6 +16,7 @@ import org.usfirst.frc.team1157.robot.subsystems.ExampleSubsystem;
 
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -51,10 +52,12 @@ public class Robot extends IterativeRobot {
     private final Object imgLock = new Object();
 
     public static final DriveTrain driveTrain = new DriveTrain();
+    public static final AnalogGyro gyro = new AnalogGyro(0);
+    
     
     /**
      * This function is run when the robot is first started up and should be
-     * used for any initialization code.
+     * used for any initialization code.	
      */
     @Override
     public void robotInit() {
@@ -147,7 +150,9 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void teleopPeriodic() {
-	Scheduler.getInstance().run();
+    	double gyroAngle = gyro.getAngle();
+    	SmartDashboard.putNumber("gyroAngle",gyroAngle);
+    	Scheduler.getInstance().run();
     }
 
     /**

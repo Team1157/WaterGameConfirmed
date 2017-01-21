@@ -1,6 +1,8 @@
 package org.usfirst.frc.team1157.robot;
 
 import edu.wpi.first.wpilibj.Jaguar;
+import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 
 /**
@@ -10,6 +12,10 @@ import edu.wpi.first.wpilibj.Jaguar;
  * floating around.
  */
 public class RobotMap {
+	
+	
+	public static Gyro gyro;
+	
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;
