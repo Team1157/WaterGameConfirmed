@@ -23,6 +23,7 @@ public class DriveTrain extends Subsystem {
 	CANTalon backLeftMotor;
 	RobotDrive robotDrive;
 	
+	double twistDamp = 0.5;
 	
 	public DriveTrain() {
     	frontRightMotor = new CANTalon(RobotMap.frontRightMotor);
@@ -44,7 +45,7 @@ public class DriveTrain extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     public void driveWithJoysticks(Joystick joystick1, Joystick joystick2) {
-    	robotDrive.mecanumDrive_Cartesian(joystick1.getX(), joystick1.getY(), joystick2.getTwist(), Robot.gyro.getAngle());
+    	robotDrive.mecanumDrive_Cartesian(joystick1.getX(), joystick1.getY(), joystick2.getTwist()*twistDamp, Robot.gyro.getAngle());
     	
     	
     }
