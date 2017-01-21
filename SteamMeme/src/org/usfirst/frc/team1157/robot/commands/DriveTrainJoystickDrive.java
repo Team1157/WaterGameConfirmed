@@ -25,7 +25,7 @@ public class DriveTrainJoystickDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	 Robot.driveTrain.driveWithJoystick(OI.stick);
+    	 Robot.driveTrain.driveWithJoysticks(OI.stick1, OI.stick2);
     	
     }
 
