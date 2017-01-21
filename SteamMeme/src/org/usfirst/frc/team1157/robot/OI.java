@@ -12,11 +12,11 @@ import org.usfirst.frc.team1157.robot.commands.RollerUp;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	public static Joystick stick = new Joystick(1);
-	Button button1 = new JoystickButton(stick, 3);
-	Button button2 = new JoystickButton(stick, 2);
-	Button trigger = new JoystickButton(stick,1);
-
+	public static Joystick stick1 = new Joystick(1);
+	Button button1 = new JoystickButton(stick1, 3);
+	Button button2 = new JoystickButton(stick1, 2);
+	Button trigger = new JoystickButton(stick1,1);
+	public static Joystick stick2 = new  Joystick(0);
 	
 	public OI() {
 		button1.whileHeld(new RollerUp());
