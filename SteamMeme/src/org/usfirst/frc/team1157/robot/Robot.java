@@ -61,6 +61,9 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void robotInit() {
+    	
+    gyro.calibrate();
+    	
 	oi = new OI();
 
 	chooser.addDefault("even better auto", new Arm1Wave());

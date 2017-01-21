@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
+import org.usfirst.frc.team1157.robot.commands.GyroReset;
 import org.usfirst.frc.team1157.robot.commands.MoveArm1Down;
 import org.usfirst.frc.team1157.robot.commands.MoveArm1Up;
 /**
@@ -14,11 +15,13 @@ public class OI {
 	public static Joystick stick = new Joystick(1);
 	Button button1 = new JoystickButton(stick, 3);
 	Button button2 = new JoystickButton(stick, 2);
+	Button trigger = new JoystickButton(stick,1);
 
 	
 	public OI() {
 		button1.whenPressed(new MoveArm1Up());
 		button2.whenPressed(new MoveArm1Down());
+		trigger.whenPressed(new GyroReset());
 	}
 	
 	
