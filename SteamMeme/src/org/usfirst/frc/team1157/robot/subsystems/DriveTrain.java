@@ -8,6 +8,7 @@ import org.usfirst.frc.team1157.robot.commands.DriveTrainJoystickDrive;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -24,6 +25,8 @@ public class DriveTrain extends Subsystem {
 	RobotDrive robotDrive;
 	
 	double twistDamp = 0.5;
+	double speedDamp = 0.5;
+	
 	
 	public DriveTrain() {
     	frontRightMotor = new CANTalon(RobotMap.frontRightMotor);
@@ -45,7 +48,12 @@ public class DriveTrain extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     }
     public void driveWithJoysticks(Joystick joystick1, Joystick joystick2) {
-    	robotDrive.mecanumDrive_Cartesian(joystick1.getX(), joystick1.getY(), joystick2.getTwist()*twistDamp, Robot.gyro.getAngle());
+    	twistDamp = SmartDashboard.getNumber("Twist Damp", 0.5);
+    	speedDamp = SmartDashboard.getNumber("Speed Damp", 0.5);
+
+    
+    	
+    	robotDrive.mecanumDrive_Cartesian(joystick1.getX()*speedDamp, joystick1.getY()*speedDamp, joystick2.getTwist()*twistDamp, Robot.gyro.getAngle());
     	
     	
     }

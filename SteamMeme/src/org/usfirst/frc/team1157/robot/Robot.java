@@ -69,6 +69,9 @@ public class Robot extends IterativeRobot {
 	chooser.addObject("arm 1", new RollerUp());
 
 	SmartDashboard.putData("Auto mode", chooser);
+	SmartDashboard.putNumber("Twist Damp", 0.5);
+	SmartDashboard.putNumber("Speed Damp", 0.5);
+	
 	
 	UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 	//camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
