@@ -22,10 +22,10 @@ public class Roller extends Subsystem {
     }
 
     public void up() {
-    	motor.set((OI.stick2.getZ()-1)/(2));
+    	motor.set((OI.stick1.getZ()-1)/(2));
     }
     public void down() {
-    	motor.set((-(OI.stick2.getZ()-1))/(2));
+    	motor.set((-(OI.stick1.getZ()-1))/(2));
     }
     public void stop() {
     	motor.set(0);
