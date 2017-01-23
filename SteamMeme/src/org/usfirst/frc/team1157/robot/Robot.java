@@ -7,6 +7,7 @@ import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team1157.robot.commands.Arm1Wave;
+import org.usfirst.frc.team1157.robot.commands.AutoDriveForward;
 import org.usfirst.frc.team1157.robot.commands.ExampleCommand;
 
 import org.usfirst.frc.team1157.robot.commands.RollerUp;
@@ -33,6 +34,8 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
  * creating this project, you must also update the manifest file in the resource
  * directory.
  */
+
+
 public class Robot extends IterativeRobot {
 
     public static final Roller roller = new Roller();
@@ -67,6 +70,7 @@ public class Robot extends IterativeRobot {
 
 	chooser.addDefault("even better auto", new Arm1Wave());
 	chooser.addObject("arm 1", new RollerUp());
+
 
 	SmartDashboard.putData("Auto mode", chooser);
 	SmartDashboard.putNumber("Twist Damp", 0.5);
