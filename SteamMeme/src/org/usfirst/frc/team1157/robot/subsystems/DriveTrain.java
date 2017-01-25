@@ -50,7 +50,8 @@ public class DriveTrain extends Subsystem {
     public void driveWithJoysticks(Joystick joystick1, Joystick joystick2) {
     	twistDamp = SmartDashboard.getNumber("Twist Damp", 0.5);
     	speedDamp = SmartDashboard.getNumber("Speed Damp", 0.5);
-
+    	double velocity = backRightMotor.getEncVelocity();
+    	SmartDashboard.putNumber("Encoder Velocity", velocity);
     
     	
     	robotDrive.mecanumDrive_Cartesian(joystick1.getX()*speedDamp, joystick1.getY()*speedDamp, joystick2.getTwist()*twistDamp, Robot.gyro.getAngle());
