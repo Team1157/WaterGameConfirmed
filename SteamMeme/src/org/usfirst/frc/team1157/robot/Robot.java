@@ -1,21 +1,14 @@
 //TODO:practicaly everything kappa
 package org.usfirst.frc.team1157.robot;
 
-import org.opencv.core.Mat;
-import org.opencv.core.Point;
 import org.opencv.core.Rect;
-import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team1157.robot.commands.Arm1Wave;
-import org.usfirst.frc.team1157.robot.commands.AutoDriveForward;
-import org.usfirst.frc.team1157.robot.commands.ExampleCommand;
-
 import org.usfirst.frc.team1157.robot.commands.RollerUp;
 import org.usfirst.frc.team1157.robot.subsystems.Roller;
 import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team1157.robot.subsystems.ExampleSubsystem;
 
-import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -80,11 +73,11 @@ public class Robot extends IterativeRobot {
 	UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 	//camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
 
-	visionThread = new VisionThread(camera, new GripPipelineJay(), GripPipeline -> {
-	    if (!GripPipeline.filterContoursOutput().isEmpty()) {
-		Rect r = Imgproc.boundingRect(GripPipeline.filterContoursOutput().get(0));
-	    }
-	});
+//	visionThread = new VisionThread(camera, new GripPipelineJay(), GripPipeline -> {
+//	    if (!GripPipeline.filterContoursOutput().isEmpty()) {
+//		Rect r = Imgproc.boundingRect(GripPipeline.filterContoursOutput().get(0));
+//	    }
+//	});
 	visionThread.start();
 	SmartDashboard.putNumber("Hlow",0);
 	SmartDashboard.putNumber("Hhigh",255);
