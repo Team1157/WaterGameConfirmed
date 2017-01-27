@@ -78,7 +78,7 @@ public class Robot extends IterativeRobot {
 //		Rect r = Imgproc.boundingRect(GripPipeline.filterContoursOutput().get(0));
 //	    }
 //	});
-	visionThread.start();
+	//visionThread.start();
 	SmartDashboard.putNumber("Hlow",0);
 	SmartDashboard.putNumber("Hhigh",255);
 	SmartDashboard.putNumber("Slow",0);
