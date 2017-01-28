@@ -59,6 +59,8 @@ public class DriveTrain extends Subsystem {
     	
     }
     public void driveForwardConstant() {
+    	double velocityConstantF = backRightMotor.getEncVelocity();
+    	SmartDashboard.putNumber("Encoder Velocity", velocityConstantF);
     	double constantForward = SmartDashboard.getNumber("Forward Speed", 0.5);
     	frontRightMotor.set(constantForward);
     	frontLeftMotor.set(constantForward);
@@ -67,6 +69,8 @@ public class DriveTrain extends Subsystem {
     }
     
     public void driveBackwardConstant() {
+    	double velocityConstantB = backRightMotor.getEncVelocity();
+    	SmartDashboard.putNumber("Encoder Velocity", velocityConstantB);
     	double constantBackward = SmartDashboard.getNumber("Backward Speed", -0.5);
     	frontRightMotor.set(constantBackward);
     	frontLeftMotor.set(constantBackward);
