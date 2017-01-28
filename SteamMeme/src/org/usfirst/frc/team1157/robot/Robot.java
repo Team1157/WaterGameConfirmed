@@ -10,6 +10,7 @@ import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team1157.robot.subsystems.ExampleSubsystem;
 
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -47,7 +48,7 @@ public class Robot extends IterativeRobot {
     private final Object imgLock = new Object();
 
     public static final DriveTrain driveTrain = new DriveTrain();
-    public static final AnalogGyro gyro = new AnalogGyro(0);
+    public static final ADXRS450_Gyro gyro = new ADXRS450_Gyro();
     
     
     /**
@@ -56,8 +57,6 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void robotInit() {
-    	
-    gyro.calibrate();
     	
 	oi = new OI();
 
