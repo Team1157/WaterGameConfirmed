@@ -1,5 +1,7 @@
 package org.usfirst.frc.team1157.robot.subsystems;
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.FeedbackDevice;
+import com.ctre.CANTalon.TalonControlMode;
 
 import org.usfirst.frc.team1157.robot.RobotMap;
 import org.usfirst.frc.team1157.robot.commands.DriveTrainJoystickDrive;
@@ -29,6 +31,10 @@ public class DriveTrain extends Subsystem {
 	
 	public DriveTrain() {
     	frontRightMotor = new CANTalon(RobotMap.frontRightMotor);
+    	frontRightMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+    	frontRightMotor.setProfile(0);
+    	frontRightMotor.changeControlMode(TalonControlMode.Speed);
+    	//frontRightMotor.configEncoderCodesPerRev(40);
     	frontLeftMotor = new CANTalon(RobotMap.frontLeftMotor);
     	backRightMotor = new CANTalon(RobotMap.backRightMotor);
     	backLeftMotor = new CANTalon(RobotMap.backLeftMotor);
