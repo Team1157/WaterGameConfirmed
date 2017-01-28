@@ -165,8 +165,8 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void teleopPeriodic() {
-    	table.putNumber("testANewNetworkVar2", 66);
-    	table.putNumber("asdf", 77);
+    	//table.putNumber("testANewNetworkVar2", 66);
+    	//table.putNumber("asdf", 77);
     	//SmartDashboard.putNumber("testANewNetworkVar", x);
     	double gyroAngle = gyro.getAngle();
     	SmartDashboard.putNumber("gyroAngle",gyroAngle);

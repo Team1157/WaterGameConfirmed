@@ -33,7 +33,7 @@ public class DriveTrain extends Subsystem {
     	backRightMotor = new CANTalon(RobotMap.backRightMotor);
     	backLeftMotor = new CANTalon(RobotMap.backLeftMotor);
     	robotDrive = new RobotDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
-    	
+    	robotDrive.setSafetyEnabled(false);
 	
 	}
 	
