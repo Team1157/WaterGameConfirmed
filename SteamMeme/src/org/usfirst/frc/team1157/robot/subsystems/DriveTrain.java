@@ -67,7 +67,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public void driveBackwardConstant() {
-    	double constantBackward = SmartDashboard.getNumber("Backward Speed", 0.5);
+    	double constantBackward = SmartDashboard.getNumber("Backward Speed", -0.5);
     	frontRightMotor.set(constantBackward);
     	frontLeftMotor.set(constantBackward);
     	backLeftMotor.set(constantBackward);
