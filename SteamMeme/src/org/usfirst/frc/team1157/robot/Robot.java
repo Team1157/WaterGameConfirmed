@@ -11,12 +11,12 @@ import org.usfirst.frc.team1157.robot.subsystems.ExampleSubsystem;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.vision.VisionThread;
@@ -31,6 +31,11 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 
 
 public class Robot extends IterativeRobot {
+	
+	NetworkTable table;
+	public Robot() {
+		table = NetworkTable.getTable("/");
+	}
 
     public static final Roller roller = new Roller();
     public static OI oi;
@@ -57,6 +62,10 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void robotInit() {
+    	NetworkTable.setClientMode();
+    	NetworkTable.setIPAddress("172.22.11.1");
+    	NetworkTable.initialize();
+    	
     	
 	oi = new OI();
 
@@ -144,6 +153,7 @@ public class Robot extends IterativeRobot {
 	// teleop starts running. If you want the autonomous to
 	// continue until interrupted by another command, remove
 	// this line or comment it out.
+    	
 	if (autonomousCommand != null)
 	    autonomousCommand.cancel();
     }
@@ -153,6 +163,8 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void teleopPeriodic() {
+    	double x = table.getNumber("centerX", 42);
+    	SmartDashboard.putNumber("centerX", x);
     	double gyroAngle = gyro.getAngle();
     	SmartDashboard.putNumber("gyroAngle",gyroAngle);
     	Scheduler.getInstance().run();
