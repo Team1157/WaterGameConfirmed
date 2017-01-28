@@ -21,8 +21,8 @@ public class OI {
 	Button trigger = new JoystickButton(stick1,1);
 	public static Joystick stick2 = new  Joystick(0);
 	Button button3 = new JoystickButton(stick2, 1);
-	public Button button4 = new JoystickButton(stick2, 4);
-	public Button button5 = new JoystickButton(stick2, 2);
+	public Button button4 = new JoystickButton(stick2, 7);
+	public Button button5 = new JoystickButton(stick2, 9);
 	
 	public OI() {
 		button1.whileHeld(new RollerUp());
