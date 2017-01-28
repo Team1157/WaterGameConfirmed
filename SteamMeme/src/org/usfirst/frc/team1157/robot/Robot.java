@@ -62,9 +62,10 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void robotInit() {
-    	NetworkTable.setClientMode();
     	NetworkTable.setIPAddress("172.22.11.1");
-    	NetworkTable.initialize();
+    	NetworkTable.setClientMode();
+
+
     	
     	
 	oi = new OI();
