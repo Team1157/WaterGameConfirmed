@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
+import org.usfirst.frc.team1157.robot.commands.ConstantBackward;
 import org.usfirst.frc.team1157.robot.commands.ConstantForward;
 import org.usfirst.frc.team1157.robot.commands.DTAutoDrive;
 import org.usfirst.frc.team1157.robot.commands.GyroReset;
@@ -21,6 +22,7 @@ public class OI {
 	public static Joystick stick2 = new  Joystick(0);
 	Button button3 = new JoystickButton(stick2, 1);
 	public Button button4 = new JoystickButton(stick2, 4);
+	public Button button5 = new JoystickButton(stick2, 2);
 	
 	public OI() {
 		button1.whileHeld(new RollerUp());
@@ -28,7 +30,7 @@ public class OI {
 		trigger.whenPressed(new GyroReset());
 		button3.whileHeld(new DTAutoDrive(0, 0.5));
 		button4.whileHeld(new ConstantForward());
-		
+		button5.whileHeld(new ConstantBackward());
 	}
 	
 	
