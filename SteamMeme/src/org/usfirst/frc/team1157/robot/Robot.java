@@ -34,7 +34,7 @@ public class Robot extends IterativeRobot {
 	
 	NetworkTable table;
 	public Robot() {
-		table = NetworkTable.getTable("/");
+		table = NetworkTable.getTable("vision");
 	}
 
     public static final Roller roller = new Roller();
@@ -62,8 +62,8 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void robotInit() {
-    	NetworkTable.setIPAddress("172.22.11.1");
-    	NetworkTable.setClientMode();
+    	//NetworkTable.setIPAddress("172.22.11.1");
+    	//NetworkTable.setClientMode();
 
 
     	
@@ -164,8 +164,9 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void teleopPeriodic() {
-    	double x = table.getNumber("centerX", 42);
-    	SmartDashboard.putNumber("centerX", x);
+    	table.putNumber("testANewNetworkVar2", 66);
+    	table.putNumber("asdf", 77);
+    	//SmartDashboard.putNumber("testANewNetworkVar", x);
     	double gyroAngle = gyro.getAngle();
     	SmartDashboard.putNumber("gyroAngle",gyroAngle);
     	Scheduler.getInstance().run();
