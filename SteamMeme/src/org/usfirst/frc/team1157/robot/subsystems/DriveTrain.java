@@ -1,7 +1,6 @@
 package org.usfirst.frc.team1157.robot.subsystems;
 import com.ctre.CANTalon;
 
-import org.usfirst.frc.team1157.robot.Robot;
 import org.usfirst.frc.team1157.robot.RobotMap;
 import org.usfirst.frc.team1157.robot.commands.DriveTrainJoystickDrive;
 
@@ -50,12 +49,36 @@ public class DriveTrain extends Subsystem {
     public void driveWithJoysticks(Joystick joystick1, Joystick joystick2) {
     	twistDamp = SmartDashboard.getNumber("Twist Damp", 0.5);
     	speedDamp = SmartDashboard.getNumber("Speed Damp", 0.5);
+    	
     	double velocity = backRightMotor.getEncVelocity();
     	SmartDashboard.putNumber("Encoder Velocity", velocity);
     	if(joystick2.getTwist()>0.2||joystick2.getTwist()<-0.2||joystick1.getX()>0.1||joystick1.getX()<-0.1||joystick1.getY()>0.1||joystick1.getY()<-0.1){
     		robotDrive.mecanumDrive_Cartesian(joystick1.getX()*speedDamp, joystick1.getY()*speedDamp, joystick2.getTwist()*twistDamp, 0);
+    	
     	}
     	
+    }
+    public void driveForwardConstant() {
+    	double constantForward = SmartDashboard.getNumber("Forward Speed", 0.5);
+    	frontRightMotor.set(constantForward);
+    	frontLeftMotor.set(constantForward);
+    	backRightMotor.set(constantForward);
+    	backLeftMotor.set(constantForward);
+    }
+    
+    public void driveBackwardConstant() {
+    	double constantBackward = SmartDashboard.getNumber("Backward Speed", 0.5);
+    	frontRightMotor.set(constantBackward);
+    	frontLeftMotor.set(constantBackward);
+    	backLeftMotor.set(constantBackward);
+    	backRightMotor.set(constantBackward);
+    }
+    
+    public void stop() {
+    	frontRightMotor.set(0);
+    	frontLeftMotor.set(0);
+    	backLeftMotor.set(0);
+    	backRightMotor.set(0);
     }
 
     
