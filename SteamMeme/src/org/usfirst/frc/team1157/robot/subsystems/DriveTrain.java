@@ -34,7 +34,8 @@ public class DriveTrain extends Subsystem {
     	frontRightMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	frontRightMotor.setProfile(0);
     	frontRightMotor.changeControlMode(TalonControlMode.Speed);
-    	//frontRightMotor.configEncoderCodesPerRev(40);
+    	frontRightMotor.reverseSensor(true);
+    	//frontRightMotor.configEncoderCodesPerRev(20);
     	frontLeftMotor = new CANTalon(RobotMap.frontLeftMotor);
     	backRightMotor = new CANTalon(RobotMap.backRightMotor);
     	backLeftMotor = new CANTalon(RobotMap.backLeftMotor);
