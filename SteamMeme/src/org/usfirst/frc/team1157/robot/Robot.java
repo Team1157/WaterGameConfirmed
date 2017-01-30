@@ -78,8 +78,8 @@ public class Robot extends IterativeRobot {
 	SmartDashboard.putData("Auto mode", chooser);
 	SmartDashboard.putNumber("Twist Damp", 0.5);
 	SmartDashboard.putNumber("Speed Damp", 0.5);
-	SmartDashboard.putNumber("Forward Speed", 0.5);
-	SmartDashboard.putNumber("Backward Speed", -0.5);
+	SmartDashboard.putNumber("Forward Speed", 500);
+	SmartDashboard.putNumber("Backward Speed", -500);
 	
 	
 	UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();

@@ -80,7 +80,7 @@ public class DriveTrain extends Subsystem {
     	SmartDashboard.putNumber("Encoder Velocity BL", velocityConstantFBL);
     	double velocityConstantFBR = backRightMotor.getEncVelocity();
     	SmartDashboard.putNumber("Encoder Velocity BR", velocityConstantFBR);
-    	double constantForward = SmartDashboard.getNumber("Forward Speed", 0.5);
+    	double constantForward = SmartDashboard.getNumber("Forward Speed", 500);
     	frontRightMotor.set(constantForward);
     	frontLeftMotor.set(constantForward);
     	backRightMotor.set(constantForward);
@@ -96,7 +96,7 @@ public class DriveTrain extends Subsystem {
     	SmartDashboard.putNumber("Encoder Velocity BL", velocityConstantBBL);
     	double velocityConstantBBR = backRightMotor.getEncVelocity();
     	SmartDashboard.putNumber("Encoder Velocity BR", velocityConstantBBR);
-    	double constantBackward = SmartDashboard.getNumber("Backward Speed", -0.5);
+    	double constantBackward = SmartDashboard.getNumber("Backward Speed", -500);
     	frontRightMotor.set(constantBackward);
     	frontLeftMotor.set(constantBackward);
     	backLeftMotor.set(constantBackward);
@@ -112,7 +112,7 @@ public class DriveTrain extends Subsystem {
     	SmartDashboard.putNumber("Encoder Velocity BL", velocityConstantLBL);
     	double velocityConstantLBR = backRightMotor.getEncVelocity();
     	SmartDashboard.putNumber("Encoder Velocity BR", velocityConstantLBR);
-    	double constantLeft = SmartDashboard.getNumber("Left Speed", 0.5);
+    	double constantLeft = SmartDashboard.getNumber("Left Speed", 500);
     	frontRightMotor.set(constantLeft);
     	frontLeftMotor.set(-1 * constantLeft);
     	backLeftMotor.set(constantLeft);
@@ -127,11 +127,11 @@ public class DriveTrain extends Subsystem {
     	SmartDashboard.putNumber("Encoder Velocity BL", velocityConstantRBL);
     	double velocityConstantRBR = backRightMotor.getEncVelocity();
     	SmartDashboard.putNumber("Encoder Velocity BR", velocityConstantRBR);
-    	double constantRight = SmartDashboard.getNumber("Right Speed", 0.5);
+    	double constantRight = SmartDashboard.getNumber("Right Speed", 500);
     	frontRightMotor.set(-1 * constantRight);
-    	frontLeftMotor.set(1 * constantRight);
+    	frontLeftMotor.set(constantRight);
     	backLeftMotor.set(-1 * constantRight);
-    	backRightMotor.set(1 * constantRight);
+    	backRightMotor.set(constantRight);
     }
     public void stop() {
     	frontRightMotor.set(0);
@@ -145,7 +145,6 @@ public class DriveTrain extends Subsystem {
     	robotDrive = new RobotDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
     	robotDrive.mecanumDrive_Cartesian(x, y, 0, 0);
     
- 
 	}
 }
 
