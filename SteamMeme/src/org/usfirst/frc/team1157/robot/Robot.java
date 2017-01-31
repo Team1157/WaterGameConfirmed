@@ -47,8 +47,8 @@ public class Robot extends IterativeRobot {
 
     SendableChooser<Command> chooser = new SendableChooser<>();
 
-    private static final int IMG_WIDTH = 1080;
-    private static final int IMG_HEIGHT = 960;
+    private static final int IMG_WIDTH = 1280;
+    private static final int IMG_HEIGHT = 720;
 
     VisionThread visionThread;
     double centerX = 0.0;
@@ -89,7 +89,7 @@ public class Robot extends IterativeRobot {
 	
 	
 	UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-	//camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+	camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
 
 //	visionThread = new VisionThread(camera, new GripPipelineJay(), GripPipeline -> {
 //	    if (!GripPipeline.filterContoursOutput().isEmpty()) {
