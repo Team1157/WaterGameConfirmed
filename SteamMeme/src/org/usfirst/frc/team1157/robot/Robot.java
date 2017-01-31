@@ -1,5 +1,6 @@
 //TODO:practicaly everything kappa
 package org.usfirst.frc.team1157.robot;
+import edu.wpi.first.wpilibj.Utility;
 
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
@@ -32,6 +33,8 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 
 public class Robot extends IterativeRobot {
 	
+	boolean userButton;
+	
 	NetworkTable table;
 	public Robot() {
 		table = NetworkTable.getTable("vision");
@@ -62,6 +65,8 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void robotInit() {
+    	userButton = false;
+    	
     	//NetworkTable.setIPAddress("172.22.11.1");
     	//NetworkTable.setClientMode();
 
@@ -80,6 +85,7 @@ public class Robot extends IterativeRobot {
 	SmartDashboard.putNumber("Speed Damp", 0.5);
 	SmartDashboard.putNumber("Forward Speed", 500);
 	SmartDashboard.putNumber("Backward Speed", -500);
+	SmartDashboard.putNumber("KeepAlive", 1);
 	
 	
 	UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
@@ -112,6 +118,14 @@ public class Robot extends IterativeRobot {
     @Override
     public void disabledPeriodic() {
 	Scheduler.getInstance().run();
+	userButton = Utility.getUserButton();
+	if(userButton == true) {
+		SmartDashboard.putBoolean("KeepAlive", false);
+	}
+	
+	
+	
+	
     }
 
     /**
