@@ -31,13 +31,27 @@ public class DriveTrain extends Subsystem {
 	
 	public DriveTrain() {
     	frontRightMotor = new CANTalon(RobotMap.frontRightMotor);
-    	//frontRightMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    	//frontRightMotor.setProfile(0);
-    	//frontRightMotor.changeControlMode(TalonControlMode.Speed);
-    	//frontRightMotor.reverseSensor(true);
+    	frontRightMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+    	frontRightMotor.setProfile(0);
+    	frontRightMotor.changeControlMode(TalonControlMode.Speed);
+    	frontRightMotor.reverseSensor(true);
     	frontLeftMotor = new CANTalon(RobotMap.frontLeftMotor);
+    	frontLeftMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+    	frontLeftMotor.setProfile(0);
+    	frontLeftMotor.changeControlMode(TalonControlMode.Speed);
+    	frontLeftMotor.reverseSensor(true);
     	frontLeftMotor.setInverted(true);
+    	backRightMotor = new CANTalon(RobotMap.frontRightMotor);
+    	backRightMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+    	backRightMotor.setProfile(0);
+    	backRightMotor.changeControlMode(TalonControlMode.Speed);
+    	backRightMotor.reverseSensor(true);
     	backRightMotor = new CANTalon(RobotMap.backRightMotor);
+    	backLeftMotor = new CANTalon(RobotMap.frontRightMotor);
+    	backLeftMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+    	backLeftMotor.setProfile(0);
+    	backLeftMotor.changeControlMode(TalonControlMode.Speed);
+    	backLeftMotor.reverseSensor(true);
     	backLeftMotor = new CANTalon(RobotMap.backLeftMotor);
     	backLeftMotor.setInverted(true);
     	robotDrive = new RobotDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
@@ -67,7 +81,7 @@ public class DriveTrain extends Subsystem {
     	double velocityBR = backRightMotor.getEncVelocity();
     	SmartDashboard.putNumber("Encoder Velocity BR", velocityBR); 
     	if(joystick2.getTwist()>0.2||joystick2.getTwist()<-0.2||joystick1.getX()>0.1||joystick1.getX()<-0.1||joystick1.getY()>0.1||joystick1.getY()<-0.1){
-    		robotDrive.mecanumDrive_Cartesian(joystick1.getX()*speedDamp, joystick1.getY()*speedDamp, joystick2.getTwist()*twistDamp, 0);
+    		robotDrive.mecanumDrive_Cartesian(joystick1.getX()*speedDamp, joystick1.getY()*speedDamp, -joystick2.getTwist()*twistDamp, 0);
     	
     	}
     	
