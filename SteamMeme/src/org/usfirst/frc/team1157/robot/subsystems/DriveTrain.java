@@ -31,14 +31,15 @@ public class DriveTrain extends Subsystem {
 	
 	public DriveTrain() {
     	frontRightMotor = new CANTalon(RobotMap.frontRightMotor);
-    	frontRightMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    	frontRightMotor.setProfile(0);
-    	frontRightMotor.changeControlMode(TalonControlMode.Speed);
-    	frontRightMotor.reverseSensor(true);
-    	//frontRightMotor.configEncoderCodesPerRev(20);
+    	//frontRightMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+    	//frontRightMotor.setProfile(0);
+    	//frontRightMotor.changeControlMode(TalonControlMode.Speed);
+    	//frontRightMotor.reverseSensor(true);
     	frontLeftMotor = new CANTalon(RobotMap.frontLeftMotor);
+    	frontLeftMotor.setInverted(true);
     	backRightMotor = new CANTalon(RobotMap.backRightMotor);
     	backLeftMotor = new CANTalon(RobotMap.backLeftMotor);
+    	backLeftMotor.setInverted(true);
     	robotDrive = new RobotDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
     	robotDrive.setSafetyEnabled(false);
 	
