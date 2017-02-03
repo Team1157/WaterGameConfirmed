@@ -4,6 +4,7 @@ import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 
+import org.usfirst.frc.team1157.robot.Robot;
 import org.usfirst.frc.team1157.robot.RobotMap;
 import org.usfirst.frc.team1157.robot.commands.DriveTrainJoystickDrive;
 
@@ -81,7 +82,7 @@ public class DriveTrain extends Subsystem {
 		if (joystick2.getTwist() > 0.1 || joystick2.getTwist() < -0.1 || joystick1.getX() > 0.1
 				|| joystick1.getX() < -0.1 || joystick1.getY() > 0.1 || joystick1.getY() < -0.1) {
 			robotDrive.mecanumDrive_Cartesian(joystick1.getX() * speedDamp, joystick1.getY() * speedDamp,
-					-joystick2.getTwist() * twistDamp, 0);
+					-joystick2.getTwist() * twistDamp, Robot.gyro.getAngle());
 
 		} else {
 			stop();
