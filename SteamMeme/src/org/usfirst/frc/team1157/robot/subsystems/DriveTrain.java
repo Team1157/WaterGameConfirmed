@@ -90,6 +90,10 @@ public class DriveTrain extends Subsystem {
 
 	}
 
+	public void turnWithSpeed(double speed) {
+		robotDrive.mecanumDrive_Cartesian(0, 0, speed, 0);
+	}
+	
 	public void driveForwardConstant() {
 		double velocityConstantFFR = frontRightMotor.getEncVelocity();
 		SmartDashboard.putNumber("Encoder Velocity FR", velocityConstantFFR);
