@@ -41,7 +41,7 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	private CANTalon createCANTalon(int motor, boolean usePID) {
-		CANTalon newMotor = new CANTalon(RobotMap.frontRightMotor);
+		CANTalon newMotor = new CANTalon(motor);
 		if(usePID){
 			newMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 			newMotor.setProfile(0);
