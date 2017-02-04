@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj.Utility;
 import org.opencv.core.Rect;
 import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team1157.robot.commands.Arm1Wave;
+import org.usfirst.frc.team1157.robot.commands.DTAutoDriveStraight;
+import org.usfirst.frc.team1157.robot.commands.DTTurnAngle;
 import org.usfirst.frc.team1157.robot.commands.RollerUp;
 import org.usfirst.frc.team1157.robot.subsystems.Roller;
 import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
@@ -78,6 +80,8 @@ public class Robot extends IterativeRobot {
 
 	chooser.addDefault("even better auto", new Arm1Wave());
 	chooser.addObject("arm 1", new RollerUp());
+	chooser.addObject("auto drive forward", new DTAutoDriveStraight());
+	chooser.addObject("auto turn", new DTTurnAngle(45));
 
 
 	SmartDashboard.putData("Auto mode", chooser);
@@ -142,6 +146,7 @@ public class Robot extends IterativeRobot {
     @Override
     public void autonomousInit() {
 	autonomousCommand = chooser.getSelected();
+	
 
 	/*
 	 * String autoSelected = SmartDashboard.getString("Auto Selector",

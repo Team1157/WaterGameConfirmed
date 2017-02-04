@@ -18,6 +18,8 @@ public class DTTurnAngle extends Command {
 	double initialAngle;
     public DTTurnAngle(double angle) {
     	turnAngle = angle;
+    	SmartDashboard.putNumber("Kp", 0.45);
+    	SmartDashboard.putNumber("TurnAngle", 45);
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
         finished = false;
@@ -25,18 +27,24 @@ public class DTTurnAngle extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	turnAngle = SmartDashboard.getNumber("TurnAngle", 45);
     	initialAngle = Robot.gyro.getAngle();
     	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() { 
-    	Kp = SmartDashboard.getNumber("Kp", 0.5);
+    	SmartDashboard.putNumber("gyroAngle", Robot.gyro.getAngle());
+    	Kp = SmartDashboard.getNumber("Kp", 1.5);
     	targetAngle = initialAngle-turnAngle;
     	error = targetAngle - Robot.gyro.getAngle();
-    	setSpeed = Kp * (error/targetAngle);
-    	
-    	if (Robot.gyro.getAngle()<= targetAngle){
+    	if(targetAngle>=0){
+    		setSpeed = Kp * (error/targetAngle);
+    	}
+    	else{
+    		setSpeed=-Kp * (error/targetAngle); 
+    	}
+    	if (Math.abs(Robot.gyro.getAngle() - targetAngle) >= 2.5){
     		Robot.driveTrain.turnWithSpeed(setSpeed);
     	}
     	else {

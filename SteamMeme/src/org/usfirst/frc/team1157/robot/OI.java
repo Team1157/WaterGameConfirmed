@@ -20,9 +20,9 @@ public class OI {
 	public static Joystick stick1 = new Joystick(1);
 	Button s1b3 = new JoystickButton(stick1, 3);
 	Button s1b2 = new JoystickButton(stick1, 2);
-	Button s1trigger = new JoystickButton(stick1,1);
+	Button s2trigger = new JoystickButton(stick2,1);
 	public static Joystick stick2 = new  Joystick(0);
-	Button s2b1 = new JoystickButton(stick2, 1);
+	//Button s2b1 = new JoystickButton(stick1, 1);
 	public Button s2b7 = new JoystickButton(stick2, 7);
 	public Button s2b9 = new JoystickButton(stick2, 9);
 	public Button s2b8 = new JoystickButton(stick2, 8);
@@ -31,8 +31,8 @@ public class OI {
 	public OI() {
 		s1b3.whileHeld(new RollerUp());
 		s1b2.whileHeld(new RollerDown());
-		s1trigger.whenPressed(new GyroReset());
-		s2b1.whileHeld(new DTAutoDrive(0, 0.5));
+		s2trigger.whenPressed(new GyroReset());
+		//s2b1.whileHeld(new DTAutoDrive(0, 0.5));
 		s2b7.whileHeld(new ConstantForward());
 		s2b9.whileHeld(new ConstantBackward());
 		s2b8.whileHeld(new ConstantRight());

@@ -33,11 +33,16 @@ public class DriveTrain extends Subsystem {
 
 	public DriveTrain() {
 		usePID = false;
-		robotDrive = new RobotDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
 		frontRightMotor = createCANTalon(RobotMap.frontRightMotor, usePID);
+		//newMotor.reverseSensor(true);
 		frontLeftMotor = createCANTalon(RobotMap.frontLeftMotor, usePID);
 		backRightMotor = createCANTalon(RobotMap.backRightMotor, usePID);
+		backRightMotor.setInverted(true);
+		backRightMotor.reverseSensor(true);
 		backLeftMotor = createCANTalon(RobotMap.backLeftMotor, usePID);
+		backLeftMotor.reverseSensor(true);
+		robotDrive = new RobotDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
+		robotDrive.setSafetyEnabled(false);
 	}
 	
 	private CANTalon createCANTalon(int motor, boolean usePID) {
@@ -46,7 +51,6 @@ public class DriveTrain extends Subsystem {
 			newMotor.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 			newMotor.setProfile(0);
 			newMotor.changeControlMode(TalonControlMode.Speed);
-			newMotor.reverseSensor(true);
 		}
 		return newMotor;
 	}
@@ -73,10 +77,10 @@ public class DriveTrain extends Subsystem {
 		twistDamp = SmartDashboard.getNumber("Twist Damp", 0.5);
 		speedDamp = SmartDashboard.getNumber("Speed Damp", 0.5);
 		//displayEncoderVelocity();
-		if (joystick2.getTwist() > 0.1 || joystick2.getTwist() < -0.1 || joystick1.getX() > 0.1
-				|| joystick1.getX() < -0.1 || joystick1.getY() > 0.1 || joystick1.getY() < -0.1) {
-			robotDrive.mecanumDrive_Cartesian(joystick1.getX() * speedDamp, joystick1.getY() * speedDamp,
-					-joystick2.getTwist() * twistDamp, Robot.gyro.getAngle());
+		if (joystick2.getTwist() > 0.1 || joystick2.getTwist() < -0.1 || joystick2.getX() > 0.1
+				|| joystick2.getX() < -0.1 || joystick2.getY() > 0.1 || joystick2.getY() < -0.1) {
+			robotDrive.mecanumDrive_Cartesian(joystick2.getX() * speedDamp, joystick2.getY() * speedDamp,
+					joystick2.getTwist() * twistDamp, Robot.gyro.getAngle());
 
 		} else {
 			stop();
@@ -89,25 +93,25 @@ public class DriveTrain extends Subsystem {
 	}
 	
 	public void driveForwardConstant() {
-		//Robot.driveTrain.displayEncoderVelocity();
+		displayEncoderVelocity();
 		double constantForward = SmartDashboard.getNumber("Forward Speed", 500);
-		frontRightMotor.set(constantForward);
+		//frontRightMotor.set(constantForward);
 		frontLeftMotor.set(constantForward);
-		backRightMotor.set(constantForward);
-		backLeftMotor.set(constantForward);
+		//backRightMotor.set(constantForward);
+		//backLeftMotor.set(constantForward);
 	}
 
 	public void driveBackwardConstant() {
-		//Robot.driveTrain.displayEncoderVelocity();
+		displayEncoderVelocity();
 		double constantBackward = SmartDashboard.getNumber("Backward Speed", -500);
-		frontRightMotor.set(constantBackward);
+		//frontRightMotor.set(constantBackward);
 		frontLeftMotor.set(constantBackward);
-		backLeftMotor.set(constantBackward);
-		backRightMotor.set(constantBackward);
+		//backLeftMotor.set(constantBackward);
+		//backRightMotor.set(constantBackward);
 	}
 
 	public void driveLeftConstant() {
-		//Robot.driveTrain.displayEncoderVelocity();
+		displayEncoderVelocity();
 		double constantLeft = SmartDashboard.getNumber("Left Speed", 500);
 		frontRightMotor.set(constantLeft);
 		frontLeftMotor.set(-1 * constantLeft);
@@ -116,7 +120,7 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void driveRightConstant() {
-		//Robot.driveTrain.displayEncoderVelocity();
+		displayEncoderVelocity();
 		double constantRight = SmartDashboard.getNumber("Right Speed", 500);
 		frontRightMotor.set(-1 * constantRight);
 		frontLeftMotor.set(constantRight);
