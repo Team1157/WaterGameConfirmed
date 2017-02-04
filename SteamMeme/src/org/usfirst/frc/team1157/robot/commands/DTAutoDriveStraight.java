@@ -3,45 +3,29 @@ package org.usfirst.frc.team1157.robot.commands;
 import org.usfirst.frc.team1157.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class DTTurnAngle extends Command {
-	double Kp;
-	double setSpeed;
-	double error;
+public class DTAutoDriveStraight extends Command {
+	double speedTime;
 	boolean finished;
-	double targetAngle;
-	double turnAngle;
-	double initialAngle;
-    public DTTurnAngle(double angle) {
-    	turnAngle = angle;
+
+    public DTAutoDriveStraight() {
+    	finished = false;
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
-        finished = false;
+        setTimeout(speedTime);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	initialAngle = Robot.gyro.getAngle();
     	
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() { 
-    	Kp = SmartDashboard.getNumber("Kp", 0.5);
-    	targetAngle = initialAngle-turnAngle;
-    	error = targetAngle - Robot.gyro.getAngle();
-    	setSpeed = Kp * (error/targetAngle);
-    	
-    	if (Robot.gyro.getAngle()<= targetAngle){
-    		Robot.driveTrain.turnWithSpeed(setSpeed);
-    	}
-    	else {
-    		end();
-    	}
+    protected void execute() {
+    	Robot.driveTrain.autoDriveForward();
     }
 
     // Make this return true when this Command no longer needs to run execute()
