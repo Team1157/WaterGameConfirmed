@@ -3,6 +3,7 @@ package org.usfirst.frc.team1157.robot.commands;
 import org.usfirst.frc.team1157.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -12,6 +13,7 @@ public class DTAutoDriveStraight extends Command {
 	boolean finished;
 
     public DTAutoDriveStraight() {
+    	speedTime = SmartDashboard.getNumber("AutoDriveF Time", 3);
     	finished = false;
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
@@ -42,5 +44,6 @@ public class DTAutoDriveStraight extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }
