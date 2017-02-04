@@ -33,6 +33,7 @@ public class DriveTrain extends Subsystem {
 
 	public DriveTrain() {
 		usePID = false;
+		robotDrive = new RobotDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
 		frontRightMotor = createCANTalon(RobotMap.frontRightMotor, usePID);
 		frontLeftMotor = createCANTalon(RobotMap.frontLeftMotor, usePID);
 		backRightMotor = createCANTalon(RobotMap.backRightMotor, usePID);
@@ -131,7 +132,7 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void autoDrive(double x, double y) {
-		robotDrive = new RobotDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
+		
 		robotDrive.mecanumDrive_Cartesian(x, y, 0, 0);
 
 	}
