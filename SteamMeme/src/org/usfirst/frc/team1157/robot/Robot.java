@@ -10,7 +10,6 @@ import org.usfirst.frc.team1157.robot.commands.DTTurnAngle;
 import org.usfirst.frc.team1157.robot.commands.RollerUp;
 import org.usfirst.frc.team1157.robot.subsystems.Roller;
 import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team1157.robot.subsystems.ExampleSubsystem;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -44,7 +43,6 @@ public class Robot extends IterativeRobot {
 
     public static final Roller roller = new Roller();
     public static OI oi;
-    public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
     Command autonomousCommand;
 
     SendableChooser<Command> chooser = new SendableChooser<>();
