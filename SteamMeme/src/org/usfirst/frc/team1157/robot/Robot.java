@@ -50,10 +50,7 @@ public class Robot extends IterativeRobot {
     private static final int IMG_WIDTH = 1280;
     private static final int IMG_HEIGHT = 720;
 
-    VisionThread visionThread;
     double centerX = 0.0;
-
-    private final Object imgLock = new Object();
 
     public static final DriveTrain driveTrain = new DriveTrain();
     public static final ADXRS450_Gyro gyro = new ADXRS450_Gyro();
@@ -67,20 +64,12 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	userButton = false;
     	
-    	//NetworkTable.setIPAddress("172.22.11.1");
-    	//NetworkTable.setClientMode();
-
-
-
-    	
-    	
 	oi = new OI();
 
 	chooser.addDefault("even better auto", new Arm1Wave());
 	chooser.addObject("arm 1", new RollerUp());
 	chooser.addObject("auto drive forward", new DTAutoDriveStraight());
 	chooser.addObject("auto turn", new DTTurnAngle(45));
-
 
 	SmartDashboard.putData("Auto mode", chooser);
 	SmartDashboard.putNumber("Twist Damp", 0.5);
@@ -90,22 +79,8 @@ public class Robot extends IterativeRobot {
 	SmartDashboard.putBoolean("KeepAlive", true);
 	SmartDashboard.putNumber("exposure", -8);
 	
-	
 	UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 	camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
-
-//	visionThread = new VisionThread(camera, new GripPipelineJay(), GripPipeline -> {
-//	    if (!GripPipeline.filterContoursOutput().isEmpty()) {
-//		Rect r = Imgproc.boundingRect(GripPipeline.filterContoursOutput().get(0));
-//	    }
-//	});
-	//visionThread.start();
-	SmartDashboard.putNumber("Hlow",0);
-	SmartDashboard.putNumber("Hhigh",255);
-	SmartDashboard.putNumber("Slow",0);
-	SmartDashboard.putNumber("Shigh",255);
-	SmartDashboard.putNumber("Llow",0);
-	SmartDashboard.putNumber("Lhigh",255);
     }
 
     /**
