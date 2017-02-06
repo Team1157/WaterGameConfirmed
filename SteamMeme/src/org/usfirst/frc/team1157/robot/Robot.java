@@ -34,12 +34,11 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 
 public class Robot extends IterativeRobot {
 	
-	boolean userButton;
-	
-	NetworkTable table;
-	public Robot() {
-		table = NetworkTable.getTable("vision");
-	}
+    boolean userButton;
+    NetworkTable table;
+    public Robot() {
+	table = NetworkTable.getTable("/vision");
+    }
 
     public static final Roller roller = new Roller();
     public static OI oi;
