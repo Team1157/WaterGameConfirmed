@@ -87,7 +87,9 @@ public class DriveTrain extends Subsystem {
 		}
 
 	}
-
+	public void driveCartesianMecanum(double x, double y, double rotation) {
+		robotDrive.mecanumDrive_Cartesian(x, y, rotation, Robot.gyro.getAngle());
+	}
 	public void turnWithSpeed(double speed) {
 		robotDrive.mecanumDrive_Cartesian(0, 0, speed, 0);
 	}
