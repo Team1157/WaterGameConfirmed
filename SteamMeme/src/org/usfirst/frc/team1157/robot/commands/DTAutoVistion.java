@@ -3,12 +3,14 @@ package org.usfirst.frc.team1157.robot.commands;
 import org.usfirst.frc.team1157.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
  *
  */
 public class DTAutoVistion extends Command {
 
+    NetworkTable table = Robot.table;
     public DTAutoVistion() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
@@ -20,6 +22,7 @@ public class DTAutoVistion extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+	Robot.driveTrain.driveCartesianMecanum(x, y, rotation);
     }
 
     // Make this return true when this Command no longer needs to run execute()
