@@ -3,13 +3,18 @@ package org.usfirst.frc.team1157.robot.commands;
 import org.usfirst.frc.team1157.robot.OI;
 import org.usfirst.frc.team1157.robot.Robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class DriveTrainJoystickDrive extends Command {
 
+	double twistDamp = 0.5;
+	double speedDamp = 0.5;
+	
     public DriveTrainJoystickDrive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -25,7 +30,17 @@ public class DriveTrainJoystickDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	 Robot.driveTrain.driveWithJoysticks(OI.stick1, OI.stick2);
+    		twistDamp = SmartDashboard.getNumber("Twist Damp", 0.5);
+    		speedDamp = SmartDashboard.getNumber("Speed Damp", 0.5);
+    		Robot.driveTrain.displayEncoderVelocity();
+    		if (OI.stick2.getTwist() > 0.1 || OI.stick2.getTwist() < -0.1 || OI.stick2.getX() > 0.1
+    				|| OI.stick2.getX() < -0.1 || OI.stick2.getY() > 0.1 || OI.stick2.getY() < -0.1) {
+    			Robot.driveTrain.driveCartesianMecanum(OI.stick2.getX() * speedDamp, OI.stick2.getY() * speedDamp,
+    					OI.stick2.getTwist() * twistDamp, Robot.gyro.getAngle());
+
+    		} else {
+    			Robot.driveTrain.stop();
+    		}
     	
     }
 
@@ -36,6 +51,7 @@ public class DriveTrainJoystickDrive extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.driveTrain.stop();
     }
 
     // Called when another command which requires one or more of the same

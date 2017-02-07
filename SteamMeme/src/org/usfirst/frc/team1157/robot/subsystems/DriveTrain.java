@@ -28,8 +28,7 @@ public class DriveTrain extends Subsystem {
 	RobotDrive robotDrive;
 	boolean usePID; 
 
-	double twistDamp = 0.5;
-	double speedDamp = 0.5;
+	
 
 	public DriveTrain() {
 		usePID = false;
@@ -73,20 +72,20 @@ public class DriveTrain extends Subsystem {
 		SmartDashboard.putNumber("Encoder Velocity BR", velocityConstantFBR);
 	}
 	
-	public void driveWithJoysticks(Joystick joystick1, Joystick joystick2) {
-		twistDamp = SmartDashboard.getNumber("Twist Damp", 0.5);
-		speedDamp = SmartDashboard.getNumber("Speed Damp", 0.5);
-		displayEncoderVelocity();
-		if (joystick2.getTwist() > 0.1 || joystick2.getTwist() < -0.1 || joystick2.getX() > 0.1
-				|| joystick2.getX() < -0.1 || joystick2.getY() > 0.1 || joystick2.getY() < -0.1) {
-			robotDrive.mecanumDrive_Cartesian(joystick2.getX() * speedDamp, joystick2.getY() * speedDamp,
-					joystick2.getTwist() * twistDamp, Robot.gyro.getAngle());
+	//public void driveWithJoysticks(Joystick joystick1, Joystick joystick2) {
+		//twistDamp = SmartDashboard.getNumber("Twist Damp", 0.5);
+		//speedDamp = SmartDashboard.getNumber("Speed Damp", 0.5);
+		//displayEncoderVelocity();
+		//if (joystick2.getTwist() > 0.1 || joystick2.getTwist() < -0.1 || joystick2.getX() > 0.1
+				//|| joystick2.getX() < -0.1 || joystick2.getY() > 0.1 || joystick2.getY() < -0.1) {
+			//robotDrive.mecanumDrive_Cartesian(joystick2.getX() * speedDamp, joystick2.getY() * speedDamp,
+			//		joystick2.getTwist() * twistDamp, Robot.gyro.getAngle());
 
-		} else {
-			stop();
-		}
+		//} else {
+			//stop();
+		//}
 
-	}
+	//}
 	public void driveCartesianMecanum(double x, double y, double rotation, double gyroAngle) {
 	    robotDrive.mecanumDrive_Cartesian(x, y, rotation, gyroAngle);
 	}
