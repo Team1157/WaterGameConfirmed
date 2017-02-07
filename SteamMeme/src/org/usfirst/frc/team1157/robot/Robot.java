@@ -10,6 +10,7 @@ import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -32,6 +33,7 @@ public class Robot extends IterativeRobot {
 	
     boolean userButton;
     public static NetworkTable table;
+    
     public Robot() {
 	table = NetworkTable.getTable("/vision");
     }
@@ -76,6 +78,7 @@ public class Robot extends IterativeRobot {
 	
 	UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 	camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+	
     }
 
     /**
