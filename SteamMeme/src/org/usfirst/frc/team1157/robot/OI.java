@@ -8,7 +8,6 @@ import org.usfirst.frc.team1157.robot.commands.ConstantBackward;
 import org.usfirst.frc.team1157.robot.commands.ConstantForward;
 import org.usfirst.frc.team1157.robot.commands.ConstantLeft;
 import org.usfirst.frc.team1157.robot.commands.ConstantRight;
-import org.usfirst.frc.team1157.robot.commands.DTAutoDrive;
 import org.usfirst.frc.team1157.robot.commands.GyroReset;
 import org.usfirst.frc.team1157.robot.commands.RollerDown;
 import org.usfirst.frc.team1157.robot.commands.RollerUp;

@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
- *TODO: add distance sensor
+ *TODO: add distance sensor, end() 
  */
 public class DTAutoVistion extends Command {
 
@@ -71,7 +71,7 @@ public class DTAutoVistion extends Command {
 			//vY = 0;
 		
 	    	error = angle - Robot.gyro.getAngle();
-	    	//TODO:should this be error insted of angle?
+	    	//TODO:should this be error instead of angle?
 	    	if(angle>=0){
 	    		setSpeed = Kp * (error/angle);
 	    	} else{
@@ -91,6 +91,7 @@ public class DTAutoVistion extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
+	    Robot.driveTrain.stop();
 	}
 
 	// Called when another command which requires one or more of the same

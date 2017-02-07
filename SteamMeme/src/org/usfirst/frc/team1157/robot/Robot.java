@@ -1,9 +1,6 @@
-//TODO:practicaly everything kappa
 package org.usfirst.frc.team1157.robot;
 import edu.wpi.first.wpilibj.Utility;
 
-import org.opencv.core.Rect;
-import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team1157.robot.commands.Arm1Wave;
 import org.usfirst.frc.team1157.robot.commands.DTAutoDriveStraight;
 import org.usfirst.frc.team1157.robot.commands.DTTurnAngle;
