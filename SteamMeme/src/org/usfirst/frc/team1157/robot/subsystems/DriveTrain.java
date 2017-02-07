@@ -87,20 +87,8 @@ public class DriveTrain extends Subsystem {
 		}
 
 	}
-	public void driveCartesianMecanum(double x, double y, double rotation, double autoAngleDrive, double ifTurnNeeded, double setSpeed, double Kp) {
-		x = SmartDashboard.getNumber("autoXSpeed", 0.5);
-		y = SmartDashboard.getNumber("autoYSpeed", 0.5);
-		rotation = SmartDashboard.getNumber("autoRotation", 0);
-		autoAngleDrive = SmartDashboard.getNumber("autoDriveAngle", 45);
-
-		if(Robot.gyro.getAngle() > autoAngleDrive) {
-			ifTurnNeeded = Robot.gyro.getAngle()-autoAngleDrive;
-			Kp = SmartDashboard.getNumber("Kp", 0.45);
-			setSpeed = Kp * (ifTurnNeeded/autoAngleDrive);
-			robotDrive.mecanumDrive_Cartesian(x, y, ifTurnNeeded, Robot.gyro.getAngle());
-		} else {
-			robotDrive.mecanumDrive_Cartesian(x, y, rotation, Robot.gyro.getAngle());
-		}
+	public void driveCartesianMecanum(double x, double y, double rotation, double gyroAngle) {
+	    robotDrive.mecanumDrive_Cartesian(x, y, rotation, gyroAngle);
 	}
 	public void turnWithSpeed(double speed) {
 		robotDrive.mecanumDrive_Cartesian(0, 0, speed, 0);

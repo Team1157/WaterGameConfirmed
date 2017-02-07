@@ -11,7 +11,9 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 public class DTAutoVistion extends Command {
 
     NetworkTable table = Robot.table;
-    public DTAutoVistion() {
+    boolean left;
+    public DTAutoVistion(boolean left) {
+	this.left = left;
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
     }
@@ -22,7 +24,8 @@ public class DTAutoVistion extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-	Robot.driveTrain.driveCartesianMecanum(x, y, rotation);
+	table.getNumberArray("centerX");
+	Robot.driveTrain.driveCartesianMecanum(0.5, y, 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
