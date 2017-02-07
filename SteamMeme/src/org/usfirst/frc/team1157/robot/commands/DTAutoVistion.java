@@ -50,12 +50,19 @@ public class DTAutoVistion extends Command {
 		// tY = (r1cY + r2cY) / 2;
 		cX = width / 2;
 		// cY = height/2;
-		tX = tX - cX;
-		double pvX = tX / cX;
-		pvX/=2;
-		if (-0.025 > pvX || pvX > 0.025) {
-			Robot.driveTrain.driveCartesianMecanum(pvX, 0, 0, 0);
-		}
+		tX -= cX;
+		// tY-=cX;
+		vX = tX / cX;
+		// vY = tY / cY;
+		if (vX < -0.05 || 0.05 < vX)
+			vX /= 2;
+		else
+			vX = 0;
+		//if (vY < -0.05 || 0.05 < vY)
+			//vY /= 2;
+		//else
+			//vY = 0;
+		Robot.driveTrain.driveCartesianMecanum(vX, 0, 0, 0);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
