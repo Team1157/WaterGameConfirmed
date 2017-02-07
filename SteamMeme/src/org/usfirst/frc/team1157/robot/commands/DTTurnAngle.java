@@ -45,7 +45,7 @@ public class DTTurnAngle extends Command {
     		setSpeed=-Kp * (error/targetAngle); 
     	}
     	if (Math.abs(Robot.gyro.getAngle() - targetAngle) >= 2.5){
-    		Robot.driveTrain.turnWithSpeed(setSpeed);
+    		Robot.driveTrain.driveCartesianMecanum(0,0,setSpeed,0);
     	}
     	else {
     	    finished = true;

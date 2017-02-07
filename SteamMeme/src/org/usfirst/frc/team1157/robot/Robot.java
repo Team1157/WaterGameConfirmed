@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.Utility;
 import org.usfirst.frc.team1157.robot.commands.Arm1Wave;
 import org.usfirst.frc.team1157.robot.commands.DTAutoDriveStraight;
 import org.usfirst.frc.team1157.robot.commands.DTTurnAngle;
-import org.usfirst.frc.team1157.robot.commands.RollerUp;
+import org.usfirst.frc.team1157.robot.commands.RollerMove;
 import org.usfirst.frc.team1157.robot.subsystems.Roller;
 import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
 
@@ -62,7 +62,7 @@ public class Robot extends IterativeRobot {
 	oi = new OI();
 
 	chooser.addDefault("even better auto", new Arm1Wave());
-	chooser.addObject("arm 1", new RollerUp());
+	chooser.addObject("arm 1", new RollerMove(0.9, 0.5));
 	chooser.addObject("auto drive forward", new DTAutoDriveStraight());
 	chooser.addObject("auto turn", new DTTurnAngle(45));
 

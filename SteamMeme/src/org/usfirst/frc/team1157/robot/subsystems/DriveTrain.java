@@ -90,9 +90,6 @@ public class DriveTrain extends Subsystem {
 	public void driveCartesianMecanum(double x, double y, double rotation, double gyroAngle) {
 	    robotDrive.mecanumDrive_Cartesian(x, y, rotation, gyroAngle);
 	}
-	public void turnWithSpeed(double speed) {
-		robotDrive.mecanumDrive_Cartesian(0, 0, speed, 0);
-	}
 	
 	public void driveForwardConstant() {
 		displayEncoderVelocity();
@@ -135,12 +132,6 @@ public class DriveTrain extends Subsystem {
 		frontLeftMotor.set(0);
 		backLeftMotor.set(0);
 		backRightMotor.set(0);
-	}
-
-	public void autoDrive(double x, double y) {
-		
-		robotDrive.mecanumDrive_Cartesian(x, y, 0, 0);
-
 	}
 	
 	public void autoDriveForward() {

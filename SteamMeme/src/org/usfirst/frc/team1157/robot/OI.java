@@ -9,8 +9,7 @@ import org.usfirst.frc.team1157.robot.commands.ConstantForward;
 import org.usfirst.frc.team1157.robot.commands.ConstantLeft;
 import org.usfirst.frc.team1157.robot.commands.ConstantRight;
 import org.usfirst.frc.team1157.robot.commands.GyroReset;
-import org.usfirst.frc.team1157.robot.commands.RollerDown;
-import org.usfirst.frc.team1157.robot.commands.RollerUp;
+import org.usfirst.frc.team1157.robot.commands.RollerMove;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -28,8 +27,8 @@ public class OI {
 	public Button s2b10 = new JoystickButton(stick2, 10);
 	
 	public OI() {
-		s1b3.whileHeld(new RollerUp());
-		s1b2.whileHeld(new RollerDown());
+		s1b3.whileHeld(new RollerMove(0.9, 0.5));
+		s1b2.whileHeld(new RollerMove(0.9, -0.5));
 		s2trigger.whenPressed(new GyroReset());
 		//s2b1.whileHeld(new DTAutoDrive(0, 0.5));
 		s2b7.whileHeld(new ConstantForward());

@@ -8,20 +8,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Arm1Wave extends CommandGroup {
 
     public Arm1Wave() {
-    	addSequential(new RollerUp());
-    	addSequential(new RollerDown());
-    	addSequential(new RollerUp());
-    	addSequential(new RollerDown());
-    	addSequential(new RollerUp());
-    	addSequential(new RollerDown());
-    	addSequential(new RollerUp());
-    	addSequential(new RollerDown());
-    	addSequential(new RollerUp());
-    	addSequential(new RollerDown());
-    	addSequential(new RollerUp());
-    	addSequential(new RollerDown());
-    	addSequential(new RollerUp());
-    	addSequential(new RollerDown());
+    	addSequential(new RollerMove(0.9, -0.5));
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());
