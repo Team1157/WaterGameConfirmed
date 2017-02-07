@@ -6,12 +6,15 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
- *
+ *TODO: add distance sensor
  */
 public class DTAutoVistion extends Command {
 
 	NetworkTable table = Robot.table;
-	boolean left;
+	double angle;
+	double Kp = 0.45;
+	double setSpeed;
+	double error;
 	double pti = 0;
 	double width = 0, height = 0;
 	double r1cX = 0, r1cY = 0;
@@ -23,7 +26,11 @@ public class DTAutoVistion extends Command {
 	double vX = 0, vY = 0;
 
 	public DTAutoVistion(boolean left) {
-		this.left = left;
+		if(left) {
+		    angle = 45;
+		} else {
+		    angle = -45;
+		}
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
 	}
@@ -62,7 +69,19 @@ public class DTAutoVistion extends Command {
 			//vY /= 2;
 		//else
 			//vY = 0;
-		Robot.driveTrain.driveCartesianMecanum(vX, 0, 0, 0);
+		
+	    	error = angle - Robot.gyro.getAngle();
+	    	//TODO:should this be error insted of angle?
+	    	if(angle>=0){
+	    		setSpeed = Kp * (error/angle);
+	    	} else{
+	    		setSpeed = -Kp * (error/angle); 
+	    	}
+	    	if (Math.abs(Robot.gyro.getAngle() - angle) >= 2.5){
+	    		Robot.driveTrain.driveCartesianMecanum(vX,0,setSpeed,0);
+	    	} else {
+	    	    Robot.driveTrain.driveCartesianMecanum(vX, 0, 0, 0);
+	    	}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

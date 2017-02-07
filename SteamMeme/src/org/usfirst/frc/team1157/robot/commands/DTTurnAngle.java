@@ -48,7 +48,7 @@ public class DTTurnAngle extends Command {
     		Robot.driveTrain.turnWithSpeed(setSpeed);
     	}
     	else {
-    		end();
+    	    finished = true;
     	}
     }
 
@@ -59,12 +59,12 @@ public class DTTurnAngle extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	finished = true;
     	Robot.driveTrain.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+	end();
     }
 }
