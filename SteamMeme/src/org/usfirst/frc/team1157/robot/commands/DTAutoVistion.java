@@ -28,6 +28,12 @@ public class DTAutoVistion extends Command {
 	double tX = 0, tY = 0;
 	double vX = 0, vY = 0;
 	boolean logger = true;
+	double averageVoltage;
+	double distance;
+	double forwardSpeed;
+	boolean finished;
+	
+	
 	AnalogInput distanceFinder = RobotMap.distanceFinder;
 
 	public DTAutoVistion(boolean left) {
@@ -46,7 +52,13 @@ public class DTAutoVistion extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
+		
+		averageVoltage = distanceFinder.getAverageVoltage();
 		SmartDashboard.putNumber("distance", distanceFinder.getAverageVoltage());
+		distance = 0.0393701*(averageVoltage/0.977);
+		
+		
+		
 		pti = table.getNumber("pti", -1);
 		width = table.getNumber("width", -1);
 		height = table.getNumber("height", -1);
@@ -75,6 +87,18 @@ public class DTAutoVistion extends Command {
 		// vY /= 2;
 		// else
 		// vY = 0;
+		
+		if (distance > 12) {
+			forwardSpeed = SmartDashboard.getNumber("ForwardSpeedSlug", 0.25);
+		}
+		else if(distance <= 12 && distance > 3){
+			forwardSpeed = SmartDashboard.getNumber("ForwardSpeedVroom", 0.75);
+		}
+		else {
+			Robot.driveTrain.stop();
+			finished = true;
+		}
+	
 
 		error = angle - Robot.gyro.getAngle();
 		// TODO:should this be error instead of angle?
@@ -89,13 +113,13 @@ public class DTAutoVistion extends Command {
 		SmartDashboard.putNumber("Auto drive: vX", vX);
 		SmartDashboard.putNumber("Auto drive: tX", tX);
 		SmartDashboard.putNumber("Auto drive: cX", cX);
-		Robot.driveTrain.driveCartesianMecanum(vX, setSpeed, 0, 0);
+		Robot.driveTrain.driveCartesianMecanum(vX, forwardSpeed, setSpeed, 0);
 		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return false;
+		return finished;
 	}
 
 	// Called once after isFinished returns true

@@ -132,12 +132,4 @@ public class DriveTrain extends Subsystem {
 		backLeftMotor.set(0);
 		backRightMotor.set(0);
 	}
-	
-	public void autoDriveForward() {
-		double speedDrive = SmartDashboard.getNumber("AutoSpeed", 0.5);
-		frontRightMotor.set(speedDrive);
-		frontLeftMotor.set(speedDrive);
-		backLeftMotor.set(speedDrive);
-		backRightMotor.set(speedDrive);
-	}
 }

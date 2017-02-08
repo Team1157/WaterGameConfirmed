@@ -65,7 +65,7 @@ public class Robot extends IterativeRobot {
 
 	chooser.addDefault("even better auto", new Arm1Wave());
 	chooser.addObject("arm 1", new RollerMove(0.9, 0.5));
-	chooser.addObject("auto drive forward", new DTAutoDriveStraight());
+	chooser.addObject("auto drive forward", new DTAutoDriveStraight (0, 0.5, 3, true, Robot.gyro.getAngle()));
 	chooser.addObject("auto turn", new DTTurnAngle(45));
 
 	SmartDashboard.putData("Auto mode", chooser);

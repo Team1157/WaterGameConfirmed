@@ -9,25 +9,45 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class DTAutoDriveStraight extends Command {
-	double speedTime;
+	double m_speedTime;
+	double m_speedSide;
+	double m_speedDrive;
+	boolean m_relativeAngle;
+	double m_anglePosition;
 
-    public DTAutoDriveStraight() {
+    public DTAutoDriveStraight(double speedSide, double speedDrive, double speedTime, boolean relativeAngle, double anglePosition) {
     	SmartDashboard.putNumber("AutoDriveF Time", 3);
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
+        m_relativeAngle = relativeAngle;
+        m_speedTime = speedTime;
+        m_speedSide = speedSide;
+        m_speedDrive = speedDrive;
+        m_anglePosition = anglePosition;
+        
 
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	speedTime = SmartDashboard.getNumber("AutoDriveF Time", 3);
-        setTimeout(speedTime);
+    	m_speedTime = SmartDashboard.getNumber("AutoDriveF Time", 3);
+        setTimeout(m_speedTime);
     	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.autoDriveForward();
+    	
+    	if(m_relativeAngle == true) {
+    		m_anglePosition = Robot.gyro.getAngle();
+    	}else{
+    		m_anglePosition = 0;
+    	}
+    	
+		double speedDrive = SmartDashboard.getNumber("AutoSpeed", 0.5);
+		double speedSide = SmartDashboard.getNumber("AutoLR Speed", 0);
+		
+		Robot.driveTrain.driveCartesianMecanum(speedSide, speedDrive, 0, m_anglePosition);
     }
 
     // Make this return true when this Command no longer needs to run execute()
