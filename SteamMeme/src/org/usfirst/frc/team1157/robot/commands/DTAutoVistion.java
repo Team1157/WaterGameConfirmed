@@ -27,6 +27,7 @@ public class DTAutoVistion extends Command {
 	double cX = 0, cY = 0;
 	double tX = 0, tY = 0;
 	double vX = 0, vY = 0;
+	boolean logger = true;
 	AnalogInput distanceFinder = RobotMap.distanceFinder;
 
 	public DTAutoVistion(boolean left) {
@@ -85,7 +86,11 @@ public class DTAutoVistion extends Command {
 		if (!(Math.abs(Robot.gyro.getAngle() - angle) >= 2.5)) {
 			setSpeed = 0;
 		}
+		SmartDashboard.putNumber("Auto drive: vX", vX);
+		SmartDashboard.putNumber("Auto drive: tX", tX);
+		SmartDashboard.putNumber("Auto drive: cX", cX);
 		Robot.driveTrain.driveCartesianMecanum(vX, setSpeed, 0, 0);
+		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
