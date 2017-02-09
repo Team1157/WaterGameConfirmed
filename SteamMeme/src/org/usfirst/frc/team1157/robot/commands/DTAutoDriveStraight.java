@@ -38,7 +38,7 @@ public class DTAutoDriveStraight extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	if(m_relativeAngle == true) {
+    	if(m_relativeAngle == false) {
     		m_anglePosition = Robot.gyro.getAngle();
     	}else{
     		m_anglePosition = 0;

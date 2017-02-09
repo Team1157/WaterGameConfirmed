@@ -2,6 +2,8 @@ package org.usfirst.frc.team1157.robot;
 import edu.wpi.first.wpilibj.Utility;
 
 import org.usfirst.frc.team1157.robot.commands.Arm1Wave;
+import org.usfirst.frc.team1157.robot.commands.AutoDriveLeft;
+import org.usfirst.frc.team1157.robot.commands.AutoDriveRight;
 import org.usfirst.frc.team1157.robot.commands.DTAutoDriveStraight;
 import org.usfirst.frc.team1157.robot.commands.DTTurnAngle;
 import org.usfirst.frc.team1157.robot.commands.RollerMove;
@@ -67,6 +69,8 @@ public class Robot extends IterativeRobot {
 	chooser.addObject("arm 1", new RollerMove(0.9, 0.5));
 	chooser.addObject("auto drive forward", new DTAutoDriveStraight (0, 0.5, 3, true, Robot.gyro.getAngle()));
 	chooser.addObject("auto turn", new DTTurnAngle(45));
+	chooser.addObject("autoDriveLeft", new AutoDriveLeft());
+	chooser.addObject("autoDriveRight", new AutoDriveRight());
 
 	SmartDashboard.putData("Auto mode", chooser);
 	SmartDashboard.putNumber("Twist Damp", 0.5);
