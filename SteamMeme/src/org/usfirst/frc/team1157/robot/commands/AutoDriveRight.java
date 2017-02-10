@@ -11,7 +11,8 @@ public class AutoDriveRight extends CommandGroup {
 
     public AutoDriveRight() {
     	requires(Robot.driveTrain);
-    	addSequential(new DTAutoDriveStraight(0, 0.5, 1, false, -45));
+    	addSequential(new DTAutoDriveStraight(0, 0.5, 1, false));
+    	addSequential(new DTTurnAngle(-60));
     	addSequential(new DTAutoVistion(false));
         
     	

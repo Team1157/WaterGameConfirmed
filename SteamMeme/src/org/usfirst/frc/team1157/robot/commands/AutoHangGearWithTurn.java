@@ -7,12 +7,23 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoDriveLeft extends CommandGroup {
+public class AutoHangGearWithTurn extends CommandGroup {
+	boolean m_left;
+	double m_turnAngle;
 
-    public AutoDriveLeft() {
+    public AutoHangGearWithTurn(boolean left) {
+    	
+    	if(left == true){
+    		m_left = true;
+    		m_turnAngle = 60;
+    	} else {
+    		m_left = false;
+    		m_turnAngle = -60;
+    	}
     	requires(Robot.driveTrain);
-    	addSequential(new DTAutoDriveStraight(0, 0.5, 1, false, 45));
-    	addSequential(new DTAutoVistion(true));
+    	addSequential(new DTAutoDriveStraight(0, 0.5, 1, false));
+    	addSequential(new DTTurnAngle(m_turnAngle));
+    	addSequential(new DTAutoVistion(m_left));
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());
