@@ -42,10 +42,8 @@ public class DTAutoDriveStraight extends Command {
     	}else{
     		initialAngle = 0;
     	}
-		double speedDrive = SmartDashboard.getNumber("AutoSpeed", 0.5);
-		double speedSide = SmartDashboard.getNumber("AutoLR Speed", 0);
 		
-		Robot.driveTrain.driveCartesianMecanum(speedSide, speedDrive, 0, initialAngle);
+		Robot.driveTrain.driveCartesianMecanum(0, m_speedDrive, 0, initialAngle);
     }
 
     // Make this return true when this Command no longer needs to run execute()

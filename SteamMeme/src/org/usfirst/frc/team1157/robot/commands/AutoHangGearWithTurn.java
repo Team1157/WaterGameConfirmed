@@ -15,15 +15,15 @@ public class AutoHangGearWithTurn extends CommandGroup {
     	
     	if(left == true){
     		m_left = true;
-    		m_turnAngle = 60;
+    		m_turnAngle = -60;
     	} else {
     		m_left = false;
-    		m_turnAngle = -60;
+    		m_turnAngle = 60;
     	}
     	requires(Robot.driveTrain);
-    	addSequential(new DTAutoDriveStraight(0, 0.5, 1, false));
+    	addSequential(new DTAutoDriveStraight(0, 0.2, 1, false));
     	addSequential(new DTTurnAngle(m_turnAngle));
-    	addSequential(new DTAutoVistion(m_left));
+    	addSequential(new DTAutoVistion(m_turnAngle));
     	
         // Add Commands here:
         // e.g. addSequential(new Command1());

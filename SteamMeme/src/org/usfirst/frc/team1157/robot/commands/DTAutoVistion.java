@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DTAutoVistion extends Command {
 
 	NetworkTable table = Robot.table;
-	double angle;
+	double angle = 0;
 	double turnKp = 0.45;
 	double strafeKp = 0.22;
 	double setSpeed;
@@ -23,18 +23,24 @@ public class DTAutoVistion extends Command {
 	double distance;
 	double forwardSpeed;
 	boolean finished;
+	double offset = 0;
+	
 	
 	
 	AnalogInput distanceFinder = RobotMap.distanceFinder;
 
-	public DTAutoVistion(boolean left) {
-		if (left) {
-			angle = 60;
-		} else {
-			angle = -60;
-		}
+	public DTAutoVistion(double angle) {
+	    this.angle = angle;
+//		if (left) {
+//			angle = 60;
+//		} else {
+//			angle = -60;
+//		}
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
+		SmartDashboard.putNumber("strafeKp", 0.5);
+		SmartDashboard.putNumber("offset", 0);
+		setTimeout(60);
 	}
 
 	// Called just before this Command runs the first time
@@ -44,42 +50,67 @@ public class DTAutoVistion extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		
-		averageVoltage = distanceFinder.getAverageVoltage();
-		SmartDashboard.putNumber("distance", distanceFinder.getAverageVoltage());
-		distance = 0.0393701*(averageVoltage/0.977);
+		
+		SmartDashboard.putNumber("distance", distance);
+		
 		double width = table.getNumber("width", -1);
 		double height = table.getNumber("height", -1);
 		double r1cX = table.getNumber("r1cX", -1);
 		double r2cX = table.getNumber("r2cX", -1);
+		width = 640;
 		double screencenter = width/2;
 		double midpoint = (r1cX + r2cX)/2;
-		double error = screencenter - midpoint;
-		double speedX = strafeKp * error;		
+		offset = SmartDashboard.getNumber("offset", 0);
+		double error = (screencenter - midpoint + offset)/screencenter;
 		
-		if (distance > 12) {
-			forwardSpeed = SmartDashboard.getNumber("ForwardSpeedSlug", 0.25);
-		}
-		else if(distance <= 12 && distance > 3){
-			forwardSpeed = SmartDashboard.getNumber("ForwardSpeedVroom", 0.75);
-		}
-		else {
-			Robot.driveTrain.stop();
-			finished = true;
-		}
+		strafeKp = SmartDashboard.getNumber("strafeKp", 0.001);
+		turnKp = SmartDashboard.getNumber("Kp", 0.0001);
+		double speedX = strafeKp * error;
+		
+		double delta = Math.abs(r1cX-r2cX);
+		distance = 145.9746947*Math.pow(0.9883868325,delta);
+		
+		
+//		if (distance > 12) {
+//			forwardSpeed = SmartDashboard.getNumber("ForwardSpeedSlug", 0.25);
+//		}
+//		else if(distance <= 12 && distance > 3){
+//			forwardSpeed = SmartDashboard.getNumber("ForwardSpeedVroom", 0.75);
+//		}
+//		else {
+//			Robot.driveTrain.stop();
+//			finished = true;
+//		}
 	
 
-		error = angle - Robot.gyro.getAngle();
+		error = (angle - Robot.gyro.getAngle())/90.0;
 		// TODO:should this be error instead of angle?
 		if (angle >= 0) {
-			setSpeed = turnKp * (error / angle);
+			setSpeed = -turnKp * (error);
 		} else {
-			setSpeed = -turnKp * (error / angle);
+			setSpeed = turnKp * (error);
 		}
-		if (!(Math.abs(Robot.gyro.getAngle() - angle) >= 2.5)) {
+		if (!(Math.abs(Robot.gyro.getAngle() - angle) >= 0.5)) {
 			setSpeed = 0;
 		}
 		
-		Robot.driveTrain.driveCartesianMecanum(speedX, forwardSpeed, setSpeed, 0);
+		//Robot.driveTrain.driveCartesianMecanum(speedX, forwardSpeed, setSpeed, 0);
+		if(table.getBoolean("locked", false)) {
+		    Robot.driveTrain.driveCartesianMecanum(speedX, 0.15, setSpeed, 0);
+		} else {
+		    System.out.println("NOT LOCKED");
+		    Robot.driveTrain.stop();
+		}
+		SmartDashboard.putNumber("∂", Math.abs(r1cX-r2cX));
+		SmartDashboard.putNumber("distance", distance);
+		SmartDashboard.putNumber("speedX", speedX);
+		SmartDashboard.putNumber("turnSpeed", setSpeed);
+		//Robot.driveTrain.driveCartesianMecanum(speedX, 0.15, setSpeed, 0);
+		finished = isTimedOut();
+		if(distance < 15) {
+		    finished = true;
+		    Robot.driveTrain.stop();
+		}
 		
 	}
 

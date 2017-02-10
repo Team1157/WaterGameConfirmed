@@ -5,6 +5,7 @@ import org.usfirst.frc.team1157.robot.commands.Arm1Wave;
 import org.usfirst.frc.team1157.robot.commands.AutoHangGearWithTurn;
 import org.usfirst.frc.team1157.robot.commands.AutoDriveRight;
 import org.usfirst.frc.team1157.robot.commands.DTAutoDriveStraight;
+import org.usfirst.frc.team1157.robot.commands.DTAutoVistion;
 import org.usfirst.frc.team1157.robot.commands.DTTurnAngle;
 import org.usfirst.frc.team1157.robot.commands.RollerMove;
 import org.usfirst.frc.team1157.robot.subsystems.Roller;
@@ -68,10 +69,11 @@ public class Robot extends IterativeRobot {
 	chooser.addDefault("even better auto", new Arm1Wave());
 	chooser.addObject("arm 1", new RollerMove(0.9, 0.5));
 	chooser.addObject("auto drive forward", new DTAutoDriveStraight (0, 0.5, 3, true));
-	chooser.addObject("auto turn", new DTTurnAngle(45));
+	chooser.addObject("auto turn", new DTTurnAngle(60));
 	chooser.addObject("hangGearFromLeft", new AutoHangGearWithTurn(true));
 	chooser.addObject("hangGearFromRight", new AutoHangGearWithTurn(false));
 	chooser.addObject("autoDriveRight", new AutoDriveRight());
+	chooser.addObject("Test Vision", new DTAutoVistion(0));
 
 	SmartDashboard.putData("Auto mode", chooser);
 	SmartDashboard.putNumber("Twist Damp", 0.5);

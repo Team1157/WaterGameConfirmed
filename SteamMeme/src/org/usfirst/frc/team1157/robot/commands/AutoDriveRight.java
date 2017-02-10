@@ -13,7 +13,7 @@ public class AutoDriveRight extends CommandGroup {
     	requires(Robot.driveTrain);
     	addSequential(new DTAutoDriveStraight(0, 0.5, 1, false));
     	addSequential(new DTTurnAngle(-60));
-    	addSequential(new DTAutoVistion(false));
+    	addSequential(new DTAutoVistion(60));
         
     	
     	// Add Commands here:
