@@ -21,7 +21,7 @@ public class AutoHangGearWithTurn extends CommandGroup {
     		m_turnAngle = 60;
     	}
     	requires(Robot.driveTrain);
-    	addSequential(new DTAutoDriveStraight(0, 0.2, 1.25, false));
+    	addSequential(new DTAutoDriveStraight(0, 0.45, 1, false));
     	addSequential(new DTTurnAngle(m_turnAngle));
     	addSequential(new DTAutoVistion(m_turnAngle));
     	

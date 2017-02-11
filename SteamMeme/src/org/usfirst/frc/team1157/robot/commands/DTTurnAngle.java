@@ -23,7 +23,7 @@ public class DTTurnAngle extends Command {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
         finished = false;
-        setTimeout(2);
+        setTimeout(1);
     }
 
     // Called just before this Command runs the first time

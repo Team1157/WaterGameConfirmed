@@ -16,7 +16,6 @@ public class DTAutoDriveStraight extends Command {
 	double initialAngle;
 
     public DTAutoDriveStraight(double speedSide, double speedDrive, double speedTime, boolean relativeAngle) {
-    	SmartDashboard.putNumber("AutoDriveF Time", 3);
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
         m_relativeAngle = relativeAngle;
@@ -29,7 +28,6 @@ public class DTAutoDriveStraight extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	m_speedTime = SmartDashboard.getNumber("AutoDriveF Time", 3);
         setTimeout(m_speedTime);
     	
     }
@@ -43,7 +41,7 @@ public class DTAutoDriveStraight extends Command {
     		initialAngle = 0;
     	}
 		
-		Robot.driveTrain.driveCartesianMecanum(0, m_speedDrive, 0, initialAngle);
+		Robot.driveTrain.driveCartesianMecanum(0, m_speedDrive, 0, 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
