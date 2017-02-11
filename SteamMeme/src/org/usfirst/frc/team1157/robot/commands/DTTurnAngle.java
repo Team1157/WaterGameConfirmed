@@ -37,7 +37,7 @@ public class DTTurnAngle extends Command {
     	Kp = SmartDashboard.getNumber("Kp", 1.5);
     	targetAngle = initialAngle-turnAngle;
     	error = targetAngle - Robot.gyro.getAngle();
-    	if(targetAngle>=0){
+    	if(error>=0){
     		setSpeed = -Kp * (error/90.0);
     	}
     	else{
