@@ -54,7 +54,6 @@ public class DTAutoVistion extends Command {
 		SmartDashboard.putNumber("distance", distance);
 		
 		double width = table.getNumber("width", -1);
-		double height = table.getNumber("height", -1);
 		double r1cX = table.getNumber("r1cX", -1);
 		double r2cX = table.getNumber("r2cX", -1);
 		width = 640;
