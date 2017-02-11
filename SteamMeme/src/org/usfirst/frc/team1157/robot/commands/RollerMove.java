@@ -16,10 +16,9 @@ public class RollerMove extends Command {
 	 * 
 	 * @param speed the speed from -1 to 1
 	 */
-	public RollerMove(double time, double speed) {
+	public RollerMove(double speed) {
 		this.speed = speed;
 		requires(Robot.roller);
-		setTimeout(time);
 	}
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);

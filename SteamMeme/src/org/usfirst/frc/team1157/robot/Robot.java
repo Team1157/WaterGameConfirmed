@@ -67,7 +67,6 @@ public class Robot extends IterativeRobot {
 	oi = new OI();
 
 	chooser.addDefault("even better auto", new Arm1Wave());
-	chooser.addObject("arm 1", new RollerMove(0.9, 0.5));
 	chooser.addObject("auto drive forward", new DTAutoDriveStraight (0, 0.5, 3));
 	chooser.addObject("auto turn", new DTTurnAngle(60));
 	chooser.addObject("hangGearFromLeft", new AutoHangGearWithTurn(false));
