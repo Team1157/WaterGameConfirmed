@@ -8,6 +8,7 @@ import org.usfirst.frc.team1157.robot.commands.ConstantBackward;
 import org.usfirst.frc.team1157.robot.commands.ConstantForward;
 import org.usfirst.frc.team1157.robot.commands.ConstantLeft;
 import org.usfirst.frc.team1157.robot.commands.ConstantRight;
+import org.usfirst.frc.team1157.robot.commands.DTTeleVistion;
 import org.usfirst.frc.team1157.robot.commands.GyroReset;
 import org.usfirst.frc.team1157.robot.commands.RollerMove;
 /**
@@ -25,6 +26,7 @@ public class OI {
 	public Button s2b9 = new JoystickButton(stick2, 9);
 	public Button s2b8 = new JoystickButton(stick2, 8);
 	public Button s2b10 = new JoystickButton(stick2, 10);
+	public Button s2b12 = new JoystickButton(stick2, 12);
 	
 	public OI() {
 		s1b3.whileHeld(new RollerMove(0.9, stick1.getZ()));
@@ -34,6 +36,7 @@ public class OI {
 		s2b9.whileHeld(new ConstantBackward());
 		s2b8.whileHeld(new ConstantRight());
 		s2b10.whileHeld(new ConstantLeft());
+		s2b12.whileHeld(new DTTeleVistion());
 		
 	}
 	

@@ -40,7 +40,7 @@ public class DTAutoVistion extends Command {
 		requires(Robot.driveTrain);
 		SmartDashboard.putNumber("strafeKp", 0.5);
 		SmartDashboard.putNumber("offset", 0);
-		setTimeout(60);
+		setTimeout(5);
 	}
 
 	// Called just before this Command runs the first time
