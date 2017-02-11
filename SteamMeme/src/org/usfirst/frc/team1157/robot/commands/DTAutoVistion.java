@@ -81,7 +81,7 @@ public class DTAutoVistion extends Command {
 //		}
 	
 
-		error = (Robot.gyro.getAngle() - angle)/10.0;
+		error = (Robot.gyro.getAngle() - angle)/15.0;
 		setSpeed = -turnKp * (error);
 
 		if (!(Math.abs(Robot.gyro.getAngle() - angle) >= 0.5)) {
@@ -93,7 +93,7 @@ public class DTAutoVistion extends Command {
 		    //Robot.driveTrain.driveCartesianMecanum(0, 0, setSpeed, 0);
 		} else {
 		    System.out.println("NOT LOCKED");
-		    Robot.driveTrain.stop();
+		    Robot.driveTrain.driveCartesianMecanum(0, 0, setSpeed, 0);
 		}
 		SmartDashboard.putNumber("∂", Math.abs(r1cX-r2cX));
 		SmartDashboard.putNumber("distance", distance);
