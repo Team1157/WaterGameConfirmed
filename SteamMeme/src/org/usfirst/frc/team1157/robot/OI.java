@@ -28,7 +28,6 @@ public class OI {
 	
 	public OI() {
 		s1b3.whileHeld(new RollerMove(0.9, stick1.getZ()));
-		s1b2.whileHeld(new RollerMove(0.9, -stick1.getZ()));
 		s2trigger.whenPressed(new GyroReset());
 		//s2b1.whileHeld(new DTAutoDrive(0, 0.5));
 		s2b7.whileHeld(new ConstantForward());
