@@ -83,9 +83,9 @@ public class DTAutoVistion extends Command {
 
 		error = (angle - Robot.gyro.getAngle())/90.0;
 		if (angle >= 0) {
-			setSpeed = -turnKp * (error);
-		} else {
 			setSpeed = turnKp * (error);
+		} else {
+			setSpeed = -turnKp * (error);
 		}
 		if (!(Math.abs(Robot.gyro.getAngle() - angle) >= 0.5)) {
 			setSpeed = 0;
