@@ -30,7 +30,7 @@ public class DTAutoVistion extends Command {
 	AnalogInput distanceFinder = RobotMap.distanceFinder;
 
 	public DTAutoVistion(double angle) {
-	    this.angle = angle;
+	    	this.angle = angle;
 //		if (left) {
 //			angle = 60;
 //		} else {
@@ -81,18 +81,16 @@ public class DTAutoVistion extends Command {
 //		}
 	
 
-		error = (angle - Robot.gyro.getAngle())/90.0;
-		if (error >= 0) {
-			setSpeed = turnKp * (error);
-		} else {
-			setSpeed = -turnKp * (error);
-		}
+		error = (Robot.gyro.getAngle() - angle)/10.0;
+		setSpeed = -turnKp * (error);
+
 		if (!(Math.abs(Robot.gyro.getAngle() - angle) >= 0.5)) {
 			setSpeed = 0;
 		}
 		
 		if(table.getBoolean("locked", false)) {
 		    Robot.driveTrain.driveCartesianMecanum(speedX, 0.15, setSpeed, 0);
+		    //Robot.driveTrain.driveCartesianMecanum(0, 0, setSpeed, 0);
 		} else {
 		    System.out.println("NOT LOCKED");
 		    Robot.driveTrain.stop();
@@ -102,7 +100,7 @@ public class DTAutoVistion extends Command {
 		SmartDashboard.putNumber("speedX", speedX);
 		SmartDashboard.putNumber("turnSpeed", setSpeed);
 		finished = isTimedOut();
-		if(distance < 15) {
+		if(distance < 5) {
 		    finished = true;
 		    Robot.driveTrain.stop();
 		}

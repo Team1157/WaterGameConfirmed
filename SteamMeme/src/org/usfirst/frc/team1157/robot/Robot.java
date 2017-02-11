@@ -70,10 +70,10 @@ public class Robot extends IterativeRobot {
 	chooser.addObject("arm 1", new RollerMove(0.9, 0.5));
 	chooser.addObject("auto drive forward", new DTAutoDriveStraight (0, 0.5, 3, true));
 	chooser.addObject("auto turn", new DTTurnAngle(60));
-	chooser.addObject("hangGearFromLeft", new AutoHangGearWithTurn(true));
-	chooser.addObject("hangGearFromRight", new AutoHangGearWithTurn(false));
+	chooser.addObject("hangGearFromLeft", new AutoHangGearWithTurn(false));
+	chooser.addObject("hangGearFromRight", new AutoHangGearWithTurn(true));
 	chooser.addObject("autoDriveRight", new AutoDriveRight());
-	chooser.addObject("Test Vision", new DTAutoVistion(0));
+	chooser.addObject("Test Vision", new DTAutoVistion(60));
 
 	SmartDashboard.putData("Auto mode", chooser);
 	SmartDashboard.putNumber("Twist Damp", 0.5);

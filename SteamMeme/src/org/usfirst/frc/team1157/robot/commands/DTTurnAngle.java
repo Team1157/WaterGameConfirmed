@@ -23,6 +23,7 @@ public class DTTurnAngle extends Command {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
         finished = false;
+        setTimeout(2);
     }
 
     // Called just before this Command runs the first time
@@ -35,14 +36,10 @@ public class DTTurnAngle extends Command {
     protected void execute() { 
     	SmartDashboard.putNumber("gyroAngle", Robot.gyro.getAngle());
     	Kp = SmartDashboard.getNumber("Kp", 1.5);
-    	targetAngle = initialAngle-turnAngle;
-    	error = targetAngle - Robot.gyro.getAngle();
-    	if(error>=0){
-    		setSpeed = -Kp * (error/90.0);
-    	}
-    	else{
-    		setSpeed= Kp * (error/90.0); 
-    	}
+    	targetAngle = turnAngle - initialAngle;
+    	error = (Robot.gyro.getAngle() - targetAngle)/90.0;
+    	setSpeed = -Kp * (error);
+    	
     	if (Math.abs(Robot.gyro.getAngle() - targetAngle) >= 2.5){
     		Robot.driveTrain.driveCartesianMecanum(0,0,setSpeed,0);
     	}
@@ -53,7 +50,7 @@ public class DTTurnAngle extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return finished;
+        return finished  || isTimedOut();
     }
 
     // Called once after isFinished returns true
