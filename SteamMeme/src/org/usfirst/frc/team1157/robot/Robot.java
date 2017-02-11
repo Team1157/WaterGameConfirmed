@@ -1,13 +1,12 @@
 package org.usfirst.frc.team1157.robot;
 import edu.wpi.first.wpilibj.Utility;
 
-import org.usfirst.frc.team1157.robot.commands.Arm1Wave;
+
 import org.usfirst.frc.team1157.robot.commands.AutoHangGearWithTurn;
 import org.usfirst.frc.team1157.robot.commands.AutoDriveRight;
 import org.usfirst.frc.team1157.robot.commands.DTAutoDriveStraight;
 import org.usfirst.frc.team1157.robot.commands.DTAutoVistion;
 import org.usfirst.frc.team1157.robot.commands.DTTurnAngle;
-import org.usfirst.frc.team1157.robot.commands.RollerMove;
 import org.usfirst.frc.team1157.robot.subsystems.Roller;
 import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
 
@@ -66,7 +65,6 @@ public class Robot extends IterativeRobot {
     	
 	oi = new OI();
 
-	chooser.addDefault("even better auto", new Arm1Wave());
 	chooser.addObject("auto drive forward", new DTAutoDriveStraight (0, 0.5, 3));
 	chooser.addObject("auto turn", new DTTurnAngle(60));
 	chooser.addObject("hangGearFromLeft", new AutoHangGearWithTurn(false));
