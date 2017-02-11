@@ -26,15 +26,19 @@ public class DriveTrain extends Subsystem {
 	CANTalon backRightMotor;
 	CANTalon backLeftMotor;
 	RobotDrive robotDrive;
-	boolean usePID; 
+	boolean usePID;
+	int MAX_SPEED = 550;
 
 	
 
 	public DriveTrain() {
-		usePID = false;
+		usePID = true;
 		frontRightMotor = createCANTalon(RobotMap.frontRightMotor, usePID);
 		//new Motor.reverseSensor(true);
 		frontLeftMotor = createCANTalon(RobotMap.frontLeftMotor, usePID);
+		frontLeftMotor.reverseSensor(true);
+		
+		
 		backRightMotor = createCANTalon(RobotMap.backRightMotor, usePID);
 		backRightMotor.setInverted(true);
 		backRightMotor.reverseSensor(true);
@@ -42,6 +46,7 @@ public class DriveTrain extends Subsystem {
 		backLeftMotor.reverseSensor(true);
 		robotDrive = new RobotDrive(frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor);
 		robotDrive.setSafetyEnabled(false);
+		robotDrive.setMaxOutput(MAX_SPEED);
 	}
 	
 	private CANTalon createCANTalon(int motor, boolean usePID) {
