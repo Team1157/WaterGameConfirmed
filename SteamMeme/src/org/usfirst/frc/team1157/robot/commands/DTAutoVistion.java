@@ -56,7 +56,6 @@ public class DTAutoVistion extends Command {
 		double width = table.getNumber("width", -1);
 		double r1cX = table.getNumber("r1cX", -1);
 		double r2cX = table.getNumber("r2cX", -1);
-		width = 640;
 		double screencenter = width/2;
 		double midpoint = (r1cX + r2cX)/2;
 		offset = SmartDashboard.getNumber("offset", 0);
@@ -83,17 +82,15 @@ public class DTAutoVistion extends Command {
 	
 
 		error = (angle - Robot.gyro.getAngle())/90.0;
-		// TODO:should this be error instead of angle?
 		if (error >= 0) {
-			setSpeed = -turnKp * (error);
-		} else {
 			setSpeed = turnKp * (error);
+		} else {
+			setSpeed = -turnKp * (error);
 		}
 		if (!(Math.abs(Robot.gyro.getAngle() - angle) >= 0.5)) {
 			setSpeed = 0;
 		}
 		
-		//Robot.driveTrain.driveCartesianMecanum(speedX, forwardSpeed, setSpeed, 0);
 		if(table.getBoolean("locked", false)) {
 		    Robot.driveTrain.driveCartesianMecanum(speedX, 0.15, setSpeed, 0);
 		} else {
@@ -104,7 +101,6 @@ public class DTAutoVistion extends Command {
 		SmartDashboard.putNumber("distance", distance);
 		SmartDashboard.putNumber("speedX", speedX);
 		SmartDashboard.putNumber("turnSpeed", setSpeed);
-		//Robot.driveTrain.driveCartesianMecanum(speedX, 0.15, setSpeed, 0);
 		finished = isTimedOut();
 		if(distance < 15) {
 		    finished = true;
