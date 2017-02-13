@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Utility;
 import org.usfirst.frc.team1157.robot.commands.AutoHangGearWithTurn;
 import org.usfirst.frc.team1157.robot.commands.AutoDriveRight;
 import org.usfirst.frc.team1157.robot.commands.DTAutoDriveStraight;
+import org.usfirst.frc.team1157.robot.commands.DTAutoLazer;
 import org.usfirst.frc.team1157.robot.commands.DTAutoVistion;
 import org.usfirst.frc.team1157.robot.commands.DTTurnAngle;
 import org.usfirst.frc.team1157.robot.subsystems.Roller;
@@ -71,6 +72,7 @@ public class Robot extends IterativeRobot {
 	chooser.addObject("hangGearFromRight", new AutoHangGearWithTurn(true));
 	chooser.addObject("autoDriveRight", new AutoDriveRight());
 	chooser.addObject("Test Vision", new DTAutoVistion(60));
+	chooser.addObject("Lazer tracking", new DTAutoLazer(0));
 
 	SmartDashboard.putData("Auto mode", chooser);
 	SmartDashboard.putNumber("Twist Damp", 0.5);
