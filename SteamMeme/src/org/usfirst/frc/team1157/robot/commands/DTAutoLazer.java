@@ -23,7 +23,7 @@ public class DTAutoLazer extends Command {
     public DTAutoLazer(double angle) {
 	this.angle = angle;
 	requires(Robot.driveTrain);
-	setTimeout(5);
+	setTimeout(60);
     }
 
     // Called just before this Command runs the first time
