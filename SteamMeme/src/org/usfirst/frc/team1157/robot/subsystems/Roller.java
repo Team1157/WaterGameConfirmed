@@ -21,7 +21,7 @@ public class Roller extends Subsystem {
     }
 
     public void move(double speed) {
-    	speed += 1;
+    	speed -= 1;
     	speed /= 2.0;
     	motor.set(speed);
     }
