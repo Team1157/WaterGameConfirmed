@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class DTAutoLazer extends Command {
+public class AutoLazer extends Command {
 
     NetworkTable table = Robot.table;
     double angle = 0;
@@ -18,9 +18,7 @@ public class DTAutoLazer extends Command {
     double forwardSpeed;
     boolean finished;
 
-    AnalogInput distanceFinder = RobotMap.distanceFinder;
-
-    public DTAutoLazer(double angle) {
+    public AutoLazer(double angle) {
 	this.angle = angle;
 	requires(Robot.driveTrain);
 	setTimeout(60);

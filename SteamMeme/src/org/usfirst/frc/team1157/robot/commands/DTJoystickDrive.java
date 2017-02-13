@@ -10,12 +10,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class DriveTrainJoystickDrive extends Command {
+public class DTJoystickDrive extends Command {
 
 	double twistDamp = 0.5;
 	double speedDamp = 0.5;
 	
-    public DriveTrainJoystickDrive() {
+    public DTJoystickDrive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.driveTrain);

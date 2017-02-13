@@ -1,9 +1,7 @@
 package org.usfirst.frc.team1157.robot.commands;
 
 import org.usfirst.frc.team1157.robot.Robot;
-import org.usfirst.frc.team1157.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -11,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * TODO: add distance sensor, end()
  */
-public class DTAutoVistion extends Command {
+public class AutoVistion extends Command {
 
 	NetworkTable table = Robot.table;
 	double angle = 0;
@@ -24,12 +22,8 @@ public class DTAutoVistion extends Command {
 	double forwardSpeed;
 	boolean finished;
 	double offset = 0;
-	
-	
-	
-	AnalogInput distanceFinder = RobotMap.distanceFinder;
 
-	public DTAutoVistion(double angle) {
+	public AutoVistion(double angle) {
 	    	this.angle = angle;
 //		if (left) {
 //			angle = 60;

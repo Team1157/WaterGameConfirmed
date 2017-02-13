@@ -1,9 +1,7 @@
 package org.usfirst.frc.team1157.robot.commands;
 
 import org.usfirst.frc.team1157.robot.Robot;
-import org.usfirst.frc.team1157.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -11,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * TODO: add distance sensor, end()
  */
-public class DTTeleVistion extends Command {
+public class AutoTeleVistion extends Command {
 
 	NetworkTable table = Robot.table;
 	double initialAngle;
@@ -24,12 +22,8 @@ public class DTTeleVistion extends Command {
 	boolean finished;
 	double offset = 0;
 	double turnKp;
-	
-	
-	
-	AnalogInput distanceFinder = RobotMap.distanceFinder;
 
-	public DTTeleVistion() {
+	public AutoTeleVistion() {
 
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
@@ -41,7 +35,6 @@ public class DTTeleVistion extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		initialAngle = Robot.gyro.getAngle();
-		
 	}
 
 	// Called repeatedly when this Command is scheduled to run

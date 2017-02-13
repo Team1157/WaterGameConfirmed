@@ -7,25 +7,21 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DTAutoDriveStraight extends Command {
-	double m_speedTime;
-	double m_speedSide;
+public class AutoDriveStraight extends Command {
 	double m_speedDrive;
 	double initialAngle;
 
-    public DTAutoDriveStraight(double speedSide, double speedDrive, double speedTime) {
+    public AutoDriveStraight(double speedDrive, double speedTime) {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
-        m_speedTime = speedTime;
-        m_speedSide = speedSide;
         m_speedDrive = speedDrive;
+        setTimeout(speedTime);
         
 
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        setTimeout(m_speedTime);
     	
     }
 

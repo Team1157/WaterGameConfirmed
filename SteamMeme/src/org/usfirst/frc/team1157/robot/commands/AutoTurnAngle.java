@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class DTTurnAngle extends Command {
+public class AutoTurnAngle extends Command {
 	double Kp;
 	double setSpeed;
 	double error;
@@ -16,7 +16,7 @@ public class DTTurnAngle extends Command {
 	double targetAngle;
 	double turnAngle;
 	double initialAngle;
-    public DTTurnAngle(double angle) {
+    public AutoTurnAngle(double angle) {
     	turnAngle = angle;
     	SmartDashboard.putNumber("Kp", 0.6);
     	SmartDashboard.putNumber("TurnAngle", 45);

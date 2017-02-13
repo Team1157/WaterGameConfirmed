@@ -4,11 +4,11 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
+import org.usfirst.frc.team1157.robot.commands.AutoTeleVistion;
 import org.usfirst.frc.team1157.robot.commands.ConstantBackward;
 import org.usfirst.frc.team1157.robot.commands.ConstantForward;
 import org.usfirst.frc.team1157.robot.commands.ConstantLeft;
 import org.usfirst.frc.team1157.robot.commands.ConstantRight;
-import org.usfirst.frc.team1157.robot.commands.DTTeleVistion;
 import org.usfirst.frc.team1157.robot.commands.GyroReset;
 import org.usfirst.frc.team1157.robot.commands.RollerMove;
 /**
@@ -36,7 +36,7 @@ public class OI {
 		s2b9.whileHeld(new ConstantBackward());
 		s2b8.whileHeld(new ConstantRight());
 		s2b10.whileHeld(new ConstantLeft());
-		s2b12.whileHeld(new DTTeleVistion());
+		s2b12.whileHeld(new AutoTeleVistion());
 		
 	}
 	

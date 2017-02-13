@@ -1,19 +1,16 @@
 package org.usfirst.frc.team1157.robot;
 import edu.wpi.first.wpilibj.Utility;
 
-
+import org.usfirst.frc.team1157.robot.commands.AutoDriveStraight;
 import org.usfirst.frc.team1157.robot.commands.AutoHangGearWithTurn;
-import org.usfirst.frc.team1157.robot.commands.AutoDriveRight;
-import org.usfirst.frc.team1157.robot.commands.DTAutoDriveStraight;
-import org.usfirst.frc.team1157.robot.commands.DTAutoLazer;
-import org.usfirst.frc.team1157.robot.commands.DTAutoVistion;
-import org.usfirst.frc.team1157.robot.commands.DTTurnAngle;
+import org.usfirst.frc.team1157.robot.commands.AutoLazer;
+import org.usfirst.frc.team1157.robot.commands.AutoTurnAngle;
+import org.usfirst.frc.team1157.robot.commands.AutoVistion;
 import org.usfirst.frc.team1157.robot.subsystems.Roller;
 import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-//import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -66,13 +63,12 @@ public class Robot extends IterativeRobot {
     	
 	oi = new OI();
 
-	chooser.addObject("auto drive forward", new DTAutoDriveStraight (0, 0.5, 3));
-	chooser.addObject("auto turn", new DTTurnAngle(60));
-	chooser.addObject("hangGearFromLeft", new AutoHangGearWithTurn(false));
-	chooser.addObject("hangGearFromRight", new AutoHangGearWithTurn(true));
-	chooser.addObject("autoDriveRight", new AutoDriveRight());
-	chooser.addObject("Test Vision", new DTAutoVistion(60));
-	chooser.addObject("Lazer tracking", new DTAutoLazer(0));
+	chooser.addObject("auto drive forward", new AutoDriveStraight (0.5, 3));
+	chooser.addObject("turn to 60", new AutoTurnAngle(60));
+	chooser.addObject("Gear From Left", new AutoHangGearWithTurn(false));
+	chooser.addObject("Gear From Right", new AutoHangGearWithTurn(true));
+	chooser.addObject("Test Vision", new AutoVistion(60));
+	chooser.addObject("Lazer tracking (0)", new AutoLazer(0));
 
 	SmartDashboard.putData("Auto mode", chooser);
 	SmartDashboard.putNumber("Twist Damp", 0.5);

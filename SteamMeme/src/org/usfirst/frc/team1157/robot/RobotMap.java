@@ -1,6 +1,5 @@
 package org.usfirst.frc.team1157.robot;
 
-import edu.wpi.first.wpilibj.AnalogInput;
 //import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
@@ -32,6 +31,4 @@ public class RobotMap {
 	public static int frontRightMotor = 6;
 	public static int backLeftMotor = 8;
 	public static int backRightMotor = 7;
-	
-	public static AnalogInput distanceFinder = new AnalogInput(0);
 }
