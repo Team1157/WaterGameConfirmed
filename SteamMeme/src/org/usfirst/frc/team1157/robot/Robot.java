@@ -12,7 +12,9 @@ import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -30,6 +32,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class Robot extends IterativeRobot {
+	
+	DigitalInput limitSwitch;
 	
     boolean userButton;
     public static NetworkTable table;
@@ -59,6 +63,8 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void robotInit() {
+    	limitSwitch = new DigitalInput(1);
+    	
     	userButton = false;
     	
 	oi = new OI();
@@ -172,6 +178,12 @@ public class Robot extends IterativeRobot {
     @Override
     public void testPeriodic() {
 	LiveWindow.run();
+    }
+    
+    public void operatorControl() {
+    	while(limitSwitch.get()) {
+    		Timer.delay(10);
+    	}
     }
 }
 
