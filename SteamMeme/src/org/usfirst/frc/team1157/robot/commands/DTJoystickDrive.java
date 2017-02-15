@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DTJoystickDrive extends Command {
 
-	double twistDamp = 0.5;
+	double twistDamp = 0.35;
 	double speedDamp = 0.5;
 	
     public DTJoystickDrive() {
@@ -30,8 +30,8 @@ public class DTJoystickDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    		twistDamp = SmartDashboard.getNumber("Twist Damp", 0.5);
-    		speedDamp = SmartDashboard.getNumber("Speed Damp", 0.5);
+    		twistDamp = SmartDashboard.getNumber("Twist Damp", twistDamp);
+    		speedDamp = SmartDashboard.getNumber("Speed Damp", speedDamp);
     		Robot.driveTrain.displayEncoderVelocity();
     		if (OI.stick2.getTwist() > 0.1 || OI.stick2.getTwist() < -0.1 || OI.stick2.getX() > 0.1
     				|| OI.stick2.getX() < -0.1 || OI.stick2.getY() > 0.1 || OI.stick2.getY() < -0.1) {
@@ -40,6 +40,9 @@ public class DTJoystickDrive extends Command {
 
     		} else {
     			Robot.driveTrain.stop();
+    		}
+    		if(OI.stick2.getRawButton(1)) {
+    			Robot.gyro.reset();
     		}
     	
     }

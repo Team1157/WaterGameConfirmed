@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1157.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -9,7 +10,6 @@ import org.usfirst.frc.team1157.robot.commands.ConstantBackward;
 import org.usfirst.frc.team1157.robot.commands.ConstantForward;
 import org.usfirst.frc.team1157.robot.commands.ConstantLeft;
 import org.usfirst.frc.team1157.robot.commands.ConstantRight;
-import org.usfirst.frc.team1157.robot.commands.GyroReset;
 import org.usfirst.frc.team1157.robot.commands.RollerMove;
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -17,11 +17,10 @@ import org.usfirst.frc.team1157.robot.commands.RollerMove;
  */
 public class OI {
 	public static Joystick stick1 = new Joystick(1);
+	public static Joystick stick2 = new  Joystick(0);
+	public static XboxController rumblePad = new XboxController(2);
 	Button s1b3 = new JoystickButton(stick1, 3);
 	Button s1b2 = new JoystickButton(stick1, 2);
-	Button s2trigger = new JoystickButton(stick2,1);
-	public static Joystick stick2 = new  Joystick(0);
-	//Button s2b1 = new JoystickButton(stick1, 1);
 	public Button s2b7 = new JoystickButton(stick2, 7);
 	public Button s2b9 = new JoystickButton(stick2, 9);
 	public Button s2b8 = new JoystickButton(stick2, 8);
@@ -30,8 +29,6 @@ public class OI {
 	
 	public OI() {
 		s1b3.whileHeld(new RollerMove(stick1));
-		s2trigger.whenPressed(new GyroReset());
-		//s2b1.whileHeld(new DTAutoDrive(0, 0.5));
 		s2b7.whileHeld(new ConstantForward());
 		s2b9.whileHeld(new ConstantBackward());
 		s2b8.whileHeld(new ConstantRight());
