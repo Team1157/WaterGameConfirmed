@@ -138,6 +138,6 @@ public class DriveTrain extends Subsystem {
     }
 
     public void setDefaultCommand(Command command) {
-	setDefaultCommand(command);
+	super.setDefaultCommand(command);
     }
 }
