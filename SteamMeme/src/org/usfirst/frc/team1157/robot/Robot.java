@@ -6,6 +6,8 @@ import org.usfirst.frc.team1157.robot.commands.AutoHangGearWithTurn;
 import org.usfirst.frc.team1157.robot.commands.AutoLazer;
 import org.usfirst.frc.team1157.robot.commands.AutoTurnAngle;
 import org.usfirst.frc.team1157.robot.commands.AutoVistion;
+import org.usfirst.frc.team1157.robot.commands.DTJoystickDrive;
+import org.usfirst.frc.team1157.robot.commands.DTRumblePadDrive;
 import org.usfirst.frc.team1157.robot.subsystems.Roller;
 import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
 
@@ -14,7 +16,6 @@ import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -82,7 +83,9 @@ public class Robot extends IterativeRobot {
 	SmartDashboard.putNumber("Forward Speed", 500);
 	SmartDashboard.putNumber("Backward Speed", -500);
 	SmartDashboard.putBoolean("KeepAlive", true);
-	SmartDashboard.putNumber("exposure", -8);
+	SmartDashboard.putBoolean("rumblePad?", false);
+	
+	LiveWindow.addSensor("Gyro", 0, gyro);
 	
 	UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 	camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
@@ -150,6 +153,11 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void teleopInit() {
+	if(SmartDashboard.getBoolean("rumblePad?", false)) {
+	    driveTrain.setDefaultCommand(new DTRumblePadDrive());
+	} else {
+	    driveTrain.setDefaultCommand(new DTJoystickDrive());
+	}
 	// This makes sure that the autonomous stops running when
 	// teleop starts running. If you want the autonomous to
 	// continue until interrupted by another command, remove
@@ -180,10 +188,10 @@ public class Robot extends IterativeRobot {
 	LiveWindow.run();
     }
     
-    public void operatorControl() {
-    	while(limitSwitch.get()) {
-    		Timer.delay(10);
-    	}
-    }
+//    public void operatorControl() {
+//    	while(limitSwitch.get()) {
+//    		Timer.delay(10);
+//    	}
+//    }
 }
 
