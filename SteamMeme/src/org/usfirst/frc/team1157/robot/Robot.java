@@ -8,6 +8,7 @@ import org.usfirst.frc.team1157.robot.commands.AutoTurnAngle;
 import org.usfirst.frc.team1157.robot.commands.AutoVistion;
 import org.usfirst.frc.team1157.robot.commands.DTJoystickDrive;
 import org.usfirst.frc.team1157.robot.commands.DTRumblePadDrive;
+import org.usfirst.frc.team1157.robot.commands.GOCRAZYANDDESTRYSTUFF;
 import org.usfirst.frc.team1157.robot.subsystems.Roller;
 import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
 
@@ -76,6 +77,7 @@ public class Robot extends IterativeRobot {
 	chooser.addObject("Gear From Right", new AutoHangGearWithTurn(true));
 	chooser.addObject("Test Vision", new AutoVistion(60));
 	chooser.addObject("Lazer tracking (0)", new AutoLazer(0));
+	chooser.addObject("NEVER EVER USE THIS EVER IN NOT JOKING", new GOCRAZYANDDESTRYSTUFF());
 
 	SmartDashboard.putData("Auto mode", chooser);
 	SmartDashboard.putNumber("Twist Damp", 0.5);
