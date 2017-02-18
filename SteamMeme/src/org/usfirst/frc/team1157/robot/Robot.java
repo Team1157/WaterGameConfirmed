@@ -35,10 +35,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 	
-	DigitalInput limitSwitch;
+    DigitalInput limitSwitch;
 	
     boolean userButton;
     public static NetworkTable table;
+    boolean ran = false;
     
     public Robot() {
 	table = NetworkTable.getTable("/vision");
@@ -77,7 +78,7 @@ public class Robot extends IterativeRobot {
 	chooser.addObject("Gear From Right", new AutoHangGearWithTurn(true));
 	chooser.addObject("Test Vision", new AutoVistion(60));
 	chooser.addObject("Lazer tracking (0)", new AutoLazer(0));
-	chooser.addObject("NEVER EVER USE THIS EVER IN NOT JOKING", new GOCRAZYANDDESTRYSTUFF());
+	chooser.addObject("NEVER EVER USE THIS EVER IN NOT JOKING!!!!!!", new GOCRAZYANDDESTRYSTUFF());
 
 	SmartDashboard.putData("Auto mode", chooser);
 	SmartDashboard.putNumber("Twist Damp", 0.5);
