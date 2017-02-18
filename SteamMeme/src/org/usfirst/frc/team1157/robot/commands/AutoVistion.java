@@ -14,7 +14,7 @@ public class AutoVistion extends Command {
 	NetworkTable table = Robot.table;
 	double angle = 0;
 	double turnKp = 0.45;
-	double strafeKp = 0.22;
+	double strafeKp = 0.3;
 	double setSpeed;
 	boolean logger = true;
 	double averageVoltage;
@@ -32,13 +32,14 @@ public class AutoVistion extends Command {
 //		}
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
-		SmartDashboard.putNumber("strafeKp", 0.5);
+		SmartDashboard.putNumber("strafeKp", strafeKp);
 		SmartDashboard.putNumber("offset", 0);
-		setTimeout(5);
+		setTimeout(15);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
+		Robot.hangGearSubsys.initializeCounter();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -83,7 +84,7 @@ public class AutoVistion extends Command {
 		}
 		
 		if(table.getBoolean("locked", false)) {
-		    Robot.driveTrain.driveCartesianMecanum(speedX, 0.15, setSpeed, 0);
+		    Robot.driveTrain.driveCartesianMecanum(speedX, 0.25, setSpeed, 0);
 		    //Robot.driveTrain.driveCartesianMecanum(0, 0, setSpeed, 0);
 		} else {
 		    System.out.println("NOT LOCKED");
@@ -94,7 +95,7 @@ public class AutoVistion extends Command {
 		SmartDashboard.putNumber("speedX", speedX);
 		SmartDashboard.putNumber("turnSpeed", setSpeed);
 		finished = isTimedOut();
-		if(distance < 5) {
+		if(Robot.hangGearSubsys.isSwitchSet()) {
 		    finished = true;
 		    Robot.driveTrain.stop();
 		}

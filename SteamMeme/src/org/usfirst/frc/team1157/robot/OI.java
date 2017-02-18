@@ -19,7 +19,7 @@ public class OI {
 	public static Joystick stick1 = new Joystick(1);
 	public static Joystick stick2 = new  Joystick(0);
 	public static XboxController rumblePad = new XboxController(2);
-	Button s1b3 = new JoystickButton(stick1, 3);
+	Button s1b3 = new JoystickButton(stick1, 1);
 	Button s1b2 = new JoystickButton(stick1, 2);
 	public Button s2b7 = new JoystickButton(stick2, 7);
 	public Button s2b9 = new JoystickButton(stick2, 9);
