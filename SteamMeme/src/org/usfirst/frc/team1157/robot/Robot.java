@@ -10,6 +10,7 @@ import org.usfirst.frc.team1157.robot.commands.DTJoystickDrive;
 import org.usfirst.frc.team1157.robot.commands.DTRumblePadDrive;
 import org.usfirst.frc.team1157.robot.commands.GOCRAZYANDDESTRYSTUFF;
 import org.usfirst.frc.team1157.robot.subsystems.Roller;
+import org.usfirst.frc.team1157.robot.subsystems.HangGearSubsys;
 import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
 
 import edu.wpi.cscore.UsbCamera;
@@ -57,6 +58,7 @@ public class Robot extends IterativeRobot {
     double centerX = 0.0;
 
     public static final DriveTrain driveTrain = new DriveTrain();
+    public static final HangGearSubsys hangGearSubsys = new HangGearSubsys();
     public static final ADXRS450_Gyro gyro = new ADXRS450_Gyro();
     
     
@@ -66,7 +68,6 @@ public class Robot extends IterativeRobot {
      */
     @Override
     public void robotInit() {
-    	limitSwitch = new DigitalInput(1);
     	
     	userButton = false;
     	
@@ -76,7 +77,7 @@ public class Robot extends IterativeRobot {
 	chooser.addObject("turn to 60", new AutoTurnAngle(60));
 	chooser.addObject("Gear From Left", new AutoHangGearWithTurn(false));
 	chooser.addObject("Gear From Right", new AutoHangGearWithTurn(true));
-	chooser.addObject("Test Vision", new AutoVistion(60));
+	chooser.addObject("Test Vision", new AutoVistion(0));
 	chooser.addObject("Lazer tracking (0)", new AutoLazer(0));
 	chooser.addObject("NEVER EVER USE THIS EVER IN NOT JOKING!!!!!!", new GOCRAZYANDDESTRYSTUFF());
 
