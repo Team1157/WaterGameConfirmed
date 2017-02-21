@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class DTJoystickDrive extends Command {
 
-	double twistDamp = 0.35;
-	double speedDamp = 0.5;
+	double twistDamp = 0.6;
+	double speedDamp = 1.0;
 	
     public DTJoystickDrive() {
         // Use requires() here to declare subsystem dependencies
@@ -31,7 +31,7 @@ public class DTJoystickDrive extends Command {
     protected void execute() {
     	
     		twistDamp = SmartDashboard.getNumber("Twist Damp", twistDamp);
-    		speedDamp = SmartDashboard.getNumber("Speed Damp", speedDamp);
+    		//speedDamp = SmartDashboard.getNumber("Speed Damp", speedDamp);
     		Robot.driveTrain.displayEncoderVelocity();
     		if (OI.stick2.getTwist() > 0.1 || OI.stick2.getTwist() < -0.1 || OI.stick2.getX() > 0.1
     				|| OI.stick2.getX() < -0.1 || OI.stick2.getY() > 0.1 || OI.stick2.getY() < -0.1) {

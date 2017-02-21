@@ -61,6 +61,9 @@ public class Robot extends IterativeRobot {
     public static final HangGearSubsys hangGearSubsys = new HangGearSubsys();
     public static final ADXRS450_Gyro gyro = new ADXRS450_Gyro();
     
+    public long millis = 0; // _TIMER_
+    public long timer = 0; // _TIMER_
+    
     
     /**
      * This function is run when the robot is first started up and should be
@@ -73,17 +76,15 @@ public class Robot extends IterativeRobot {
     	
 	oi = new OI();
 
-	chooser.addObject("auto drive forward", new AutoDriveStraight (0.5, 3));
-	chooser.addObject("turn to 60", new AutoTurnAngle(60));
+	chooser.addObject("auto drive forward", new AutoDriveStraight (1.0, 3));
+	//chooser.addObject("turn to 60", new AutoTurnAngle(60));
 	chooser.addObject("Gear From Left", new AutoHangGearWithTurn(false));
 	chooser.addObject("Gear From Right", new AutoHangGearWithTurn(true));
-	chooser.addObject("Test Vision", new AutoVistion(0));
-	chooser.addObject("Lazer tracking (0)", new AutoLazer(0));
-	chooser.addObject("NEVER EVER USE THIS EVER IN NOT JOKING!!!!!!", new GOCRAZYANDDESTRYSTUFF());
+	chooser.addDefault("Test Vision", new AutoVistion(0));
+	//chooser.addObject("Lazer tracking (0)", new AutoLazer(0));
+	//chooser.addObject("NEVER EVER USE THIS EVER IN NOT JOKING!!!!!!", new GOCRAZYANDDESTRYSTUFF());
 
 	SmartDashboard.putData("Auto mode", chooser);
-	SmartDashboard.putNumber("Twist Damp", 0.5);
-	SmartDashboard.putNumber("Speed Damp", 0.5);
 	SmartDashboard.putNumber("Forward Speed", 500);
 	SmartDashboard.putNumber("Backward Speed", -500);
 	SmartDashboard.putBoolean("KeepAlive", true);
@@ -93,7 +94,6 @@ public class Robot extends IterativeRobot {
 	
 	UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 	camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
-	
     }
 
     /**
@@ -113,10 +113,6 @@ public class Robot extends IterativeRobot {
 	if(userButton == true) {
 		SmartDashboard.putBoolean("KeepAlive", false);
 	}
-	
-	
-	
-	
     }
 
     /**
@@ -145,6 +141,8 @@ public class Robot extends IterativeRobot {
 	// schedule the autonomous command (example)
 	if (autonomousCommand != null)
 	    autonomousCommand.start();
+	
+	millis = System.currentTimeMillis();  // _TIMER_
     }
 
     /**
@@ -153,6 +151,8 @@ public class Robot extends IterativeRobot {
     @Override
     public void autonomousPeriodic() {
 	Scheduler.getInstance().run();
+	
+	timerPeriodic(); // _TIMER_
     }
 
     @Override
@@ -182,6 +182,8 @@ public class Robot extends IterativeRobot {
     	double gyroAngle = gyro.getAngle();
     	SmartDashboard.putNumber("gyroAngle",gyroAngle);
     	Scheduler.getInstance().run();
+    	
+    	timerPeriodic(); // _TIMER_
     }
 
     /**
@@ -190,6 +192,15 @@ public class Robot extends IterativeRobot {
     @Override
     public void testPeriodic() {
 	LiveWindow.run();
+    }
+    
+    // User defined
+    // _TIMER_
+    public void timerPeriodic() { 
+	long millistemp = System.currentTimeMillis();
+	timer += millistemp - millis;
+	millis = millistemp;
+	SmartDashboard.putNumber("Millis Timer", timer);
     }
     
 //    public void operatorControl() {

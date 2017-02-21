@@ -22,6 +22,7 @@ public class AutoVistion extends Command {
 	double forwardSpeed;
 	boolean finished;
 	double offset = 0;
+	int tickker = 0;
 
 	public AutoVistion(double angle) {
 	    	this.angle = angle;
@@ -78,17 +79,25 @@ public class AutoVistion extends Command {
 
 		error = (Robot.gyro.getAngle() - angle)/15.0;
 		setSpeed = -turnKp * (error);
+		SmartDashboard.putNumber("Gyro Angle", Robot.gyro.getAngle());
 
 		if (!(Math.abs(Robot.gyro.getAngle() - angle) >= 0.5)) {
 			setSpeed = 0;
 		}
 		
 		if(table.getBoolean("locked", false)) {
+		    SmartDashboard.putBoolean("locked", true);
 		    Robot.driveTrain.driveCartesianMecanum(speedX, 0.25, setSpeed, 0);
-		    //Robot.driveTrain.driveCartesianMecanum(0, 0, setSpeed, 0);
+		    tickker = 0;
 		} else {
+		    SmartDashboard.putBoolean("locked", false);
 		    System.out.println("NOT LOCKED");
-		    Robot.driveTrain.driveCartesianMecanum(0, 0, setSpeed, 0);
+		    if(tickker > 25 ) {
+			Robot.driveTrain.driveCartesianMecanum(0, 0.1, setSpeed, 0);
+		    } else {
+			Robot.driveTrain.driveCartesianMecanum(speedX, 0.25, setSpeed, 0);
+		    }
+		    tickker++;
 		}
 		SmartDashboard.putNumber("∂", Math.abs(r1cX-r2cX));
 		SmartDashboard.putNumber("distance", distance);

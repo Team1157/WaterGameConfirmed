@@ -11,6 +11,7 @@ import org.usfirst.frc.team1157.robot.commands.ConstantForward;
 import org.usfirst.frc.team1157.robot.commands.ConstantLeft;
 import org.usfirst.frc.team1157.robot.commands.ConstantRight;
 import org.usfirst.frc.team1157.robot.commands.RollerMove;
+import org.usfirst.frc.team1157.robot.commands.TurnPiOff;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -26,8 +27,10 @@ public class OI {
 	public Button s2b8 = new JoystickButton(stick2, 8);
 	public Button s2b10 = new JoystickButton(stick2, 10);
 	public Button s2b12 = new JoystickButton(stick2, 12);
+	public Button s1b10 = new JoystickButton(stick1, 10);
 	
 	public OI() {
+	    	s1b10.whileHeld(new TurnPiOff());
 		s1b3.whileHeld(new RollerMove(stick1));
 		s2b7.whileHeld(new ConstantForward());
 		s2b9.whileHeld(new ConstantBackward());
