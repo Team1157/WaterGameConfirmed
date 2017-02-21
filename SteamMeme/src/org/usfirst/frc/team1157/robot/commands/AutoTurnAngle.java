@@ -9,17 +9,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class AutoTurnAngle extends Command {
-	double Kp;
+	double Kp = 0.6;
 	double setSpeed;
 	double error;
 	boolean finished;
-	double targetAngle;
 	double turnAngle;
-	double initialAngle;
     public AutoTurnAngle(double angle) {
     	turnAngle = angle;
-    	SmartDashboard.putNumber("Kp", 0.6);
-    	SmartDashboard.putNumber("TurnAngle", 45);
+    	SmartDashboard.putNumber("Kp", Kp);
         // Use requires() here to declare subsystem dependencies
         requires(Robot.driveTrain);
         finished = false;
@@ -28,19 +25,16 @@ public class AutoTurnAngle extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	initialAngle = Robot.gyro.getAngle();
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() { 
     	SmartDashboard.putNumber("gyroAngle", Robot.gyro.getAngle());
-    	Kp = SmartDashboard.getNumber("Kp", 1.5);
-    	targetAngle = turnAngle - initialAngle;
-    	error = (Robot.gyro.getAngle() - targetAngle)/90.0;
-    	setSpeed = -Kp * (error);
+    	Kp = SmartDashboard.getNumber("Kp", Kp);
+    	error = (turnAngle - Robot.gyro.getAngle())/90.0;
+    	setSpeed = Kp * (error);
     	
-    	if (Math.abs(Robot.gyro.getAngle() - targetAngle) >= 2.5){
+    	if (Math.abs(Robot.gyro.getAngle() - turnAngle) >= 2.5){
     		Robot.driveTrain.driveCartesianMecanum(0,0,setSpeed,0);
     	}
     	else {

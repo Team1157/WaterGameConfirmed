@@ -34,7 +34,6 @@ public class AutoVistion extends Command {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.driveTrain);
 		SmartDashboard.putNumber("strafeKp", strafeKp);
-		SmartDashboard.putNumber("offset", 0);
 		setTimeout(15);
 	}
 
@@ -58,7 +57,7 @@ public class AutoVistion extends Command {
 		double error = (screencenter - midpoint + offset)/screencenter;
 		
 		strafeKp = SmartDashboard.getNumber("strafeKp", 0.001);
-		turnKp = SmartDashboard.getNumber("Kp", 0.0001);
+		//turnKp = SmartDashboard.getNumber("Kp", 0.0001);
 		double speedX = strafeKp * error;
 		
 		double delta = Math.abs(r1cX-r2cX);
@@ -79,7 +78,6 @@ public class AutoVistion extends Command {
 
 		error = (Robot.gyro.getAngle() - angle)/15.0;
 		setSpeed = -turnKp * (error);
-		SmartDashboard.putNumber("Gyro Angle", Robot.gyro.getAngle());
 
 		if (!(Math.abs(Robot.gyro.getAngle() - angle) >= 0.5)) {
 			setSpeed = 0;
@@ -99,6 +97,7 @@ public class AutoVistion extends Command {
 		    }
 		    tickker++;
 		}
+		SmartDashboard.putNumber("Gyro Angle", Robot.gyro.getAngle());
 		SmartDashboard.putNumber("∂", Math.abs(r1cX-r2cX));
 		SmartDashboard.putNumber("distance", distance);
 		SmartDashboard.putNumber("speedX", speedX);
