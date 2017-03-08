@@ -15,13 +15,10 @@ public class AutoVistion extends Command {
 	double angle = 0;
 	double turnKp = 0.45;
 	double strafeKp = 0.3;
-	double setSpeed;
-	boolean logger = true;
-	double averageVoltage;
+	double turnSpeed;
 	double distance;
 	double forwardSpeed;
 	boolean finished;
-	double offset = 0;
 	int tickker = 0;
 
 	public AutoVistion(double angle) {
@@ -53,11 +50,9 @@ public class AutoVistion extends Command {
 		double r2cX = table.getNumber("r2cX", -1);
 		double screencenter = width/2;
 		double midpoint = (r1cX + r2cX)/2;
-		offset = SmartDashboard.getNumber("offset", 0);
-		double error = (screencenter - midpoint + offset)/screencenter;
+		double error = (screencenter - midpoint)/screencenter;
 		
-		strafeKp = SmartDashboard.getNumber("strafeKp", 0.001);
-		//turnKp = SmartDashboard.getNumber("Kp", 0.0001);
+		strafeKp = SmartDashboard.getNumber("strafeKp", strafeKp);
 		double speedX = strafeKp * error;
 		
 		double delta = Math.abs(r1cX-r2cX);
@@ -76,24 +71,24 @@ public class AutoVistion extends Command {
 //		}
 	
 
-		error = (Robot.gyro.getAngle() - angle)/15.0;
-		setSpeed = -turnKp * (error);
+		error = (angle - Robot.gyro.getAngle())/15.0;
+		turnSpeed = turnKp * (error);
 
 		if (!(Math.abs(Robot.gyro.getAngle() - angle) >= 0.5)) {
-			setSpeed = 0;
+			turnSpeed = 0;
 		}
 		
 		if(table.getBoolean("locked", false)) {
 		    SmartDashboard.putBoolean("locked", true);
-		    Robot.driveTrain.driveCartesianMecanum(speedX, 0.25, setSpeed, 0);
+		    Robot.driveTrain.driveCartesianMecanum(speedX, 0.25, turnSpeed, 0);
 		    tickker = 0;
 		} else {
 		    SmartDashboard.putBoolean("locked", false);
 		    System.out.println("NOT LOCKED");
 		    if(tickker > 25 ) {
-			Robot.driveTrain.driveCartesianMecanum(0, 0.1, setSpeed, 0);
+			Robot.driveTrain.driveCartesianMecanum(0, 0.1, turnSpeed, 0);
 		    } else {
-			Robot.driveTrain.driveCartesianMecanum(speedX, 0.25, setSpeed, 0);
+			Robot.driveTrain.driveCartesianMecanum(speedX, 0.25, turnSpeed, 0);
 		    }
 		    tickker++;
 		}
@@ -101,7 +96,7 @@ public class AutoVistion extends Command {
 		SmartDashboard.putNumber("∂", Math.abs(r1cX-r2cX));
 		SmartDashboard.putNumber("distance", distance);
 		SmartDashboard.putNumber("speedX", speedX);
-		SmartDashboard.putNumber("turnSpeed", setSpeed);
+		SmartDashboard.putNumber("turnSpeed", turnSpeed);
 		finished = isTimedOut();
 		if(Robot.hangGearSubsys.isSwitchSet()) {
 		    finished = true;
