@@ -10,6 +10,7 @@ import org.usfirst.frc.team1157.robot.commands.ConstantBackward;
 import org.usfirst.frc.team1157.robot.commands.ConstantForward;
 import org.usfirst.frc.team1157.robot.commands.ConstantLeft;
 import org.usfirst.frc.team1157.robot.commands.ConstantRight;
+import org.usfirst.frc.team1157.robot.commands.GearManipOpen;
 import org.usfirst.frc.team1157.robot.commands.RollerMove;
 import org.usfirst.frc.team1157.robot.commands.TurnPiOff;
 /**
@@ -28,15 +29,17 @@ public class OI {
 	public Button s2b10 = new JoystickButton(stick2, 10);
 	public Button s2b12 = new JoystickButton(stick2, 12);
 	public Button s1b10 = new JoystickButton(stick1, 10);
+	public Button s2b11 = new JoystickButton(stick2, 11);
 	
 	public OI() {
-	    	s1b10.whileHeld(new TurnPiOff());
+	    s1b10.whileHeld(new TurnPiOff());
 		s1b3.whileHeld(new RollerMove(stick1));
 		s2b7.whileHeld(new ConstantForward());
 		s2b9.whileHeld(new ConstantBackward());
 		s2b8.whileHeld(new ConstantRight());
 		s2b10.whileHeld(new ConstantLeft());
 		s2b12.whileHeld(new AutoTeleVistion());
+		s2b11.whenPressed(new GearManipOpen());
 		
 	}
 	
