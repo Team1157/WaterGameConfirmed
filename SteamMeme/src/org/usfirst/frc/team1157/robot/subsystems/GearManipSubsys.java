@@ -21,17 +21,17 @@ public abstract class GearManipSubsys extends Subsystem {
 		return counter.get() > 0;
 	}
 	
-	//public static boolean isSwitch2Set() {
-		//return counter2.get() > 0;
-	//}
+	public static boolean isSwitch2Set() {
+		return counter2.get() > 0;
+	}
 	
 	public static void initializeCounter() {
 		counter.reset();
 	}
 	
-	//public static void initializeCounter2() {
-		//counter2.reset();
-	//}
+	public static void initializeCounter2() {
+		counter2.reset();
+	}
 
     static // Put methods for controlling this subsystem
     // here. Call these from Commands.
