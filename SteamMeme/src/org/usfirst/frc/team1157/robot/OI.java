@@ -10,6 +10,7 @@ import org.usfirst.frc.team1157.robot.commands.ConstantBackward;
 import org.usfirst.frc.team1157.robot.commands.ConstantForward;
 import org.usfirst.frc.team1157.robot.commands.ConstantLeft;
 import org.usfirst.frc.team1157.robot.commands.ConstantRight;
+import org.usfirst.frc.team1157.robot.commands.GearManipClose;
 import org.usfirst.frc.team1157.robot.commands.GearManipOpen;
 import org.usfirst.frc.team1157.robot.commands.RollerMove;
 import org.usfirst.frc.team1157.robot.commands.TurnPiOff;
@@ -23,13 +24,14 @@ public class OI {
 	public static XboxController rumblePad = new XboxController(2);
 	Button s1b3 = new JoystickButton(stick1, 1);
 	Button s1b2 = new JoystickButton(stick1, 2);
+	public Button s2b5 = new JoystickButton(stick2, 5);
+	public Button s2b6 = new JoystickButton(stick2, 6);
 	public Button s2b7 = new JoystickButton(stick2, 7);
 	public Button s2b9 = new JoystickButton(stick2, 9);
 	public Button s2b8 = new JoystickButton(stick2, 8);
 	public Button s2b10 = new JoystickButton(stick2, 10);
 	public Button s2b12 = new JoystickButton(stick2, 12);
 	public Button s1b10 = new JoystickButton(stick1, 10);
-	public Button s2b11 = new JoystickButton(stick2, 11);
 	
 	public OI() {
 	    s1b10.whileHeld(new TurnPiOff());
@@ -39,8 +41,8 @@ public class OI {
 		s2b8.whileHeld(new ConstantRight());
 		s2b10.whileHeld(new ConstantLeft());
 		s2b12.whileHeld(new AutoTeleVistion());
-		s2b11.whenPressed(new GearManipOpen());
-		
+		s2b5.whenPressed(new GearManipOpen());
+		s2b6.whenPressed(new GearManipClose());
 	}
 	
 	
