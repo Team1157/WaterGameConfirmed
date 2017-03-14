@@ -200,7 +200,8 @@ public class Robot extends IterativeRobot {
 	long millistemp = System.currentTimeMillis();
 	timer += millistemp - millis;
 	millis = millistemp;
-	SmartDashboard.putNumber("Millis Timer", timer);
+	SmartDashboard.putNumber("Timer", timer);
+	SmartDashboard.putNumber("Random", Math.random());
     }
     
 //    public void operatorControl() {
