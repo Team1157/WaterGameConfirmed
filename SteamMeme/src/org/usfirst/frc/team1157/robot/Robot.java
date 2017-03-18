@@ -10,8 +10,8 @@ import org.usfirst.frc.team1157.robot.commands.DTJoystickDrive;
 import org.usfirst.frc.team1157.robot.commands.DTRumblePadDrive;
 import org.usfirst.frc.team1157.robot.commands.GOCRAZYANDDESTRYSTUFF;
 import org.usfirst.frc.team1157.robot.subsystems.Roller;
-import org.usfirst.frc.team1157.robot.subsystems.HangGearSubsys;
 import org.usfirst.frc.team1157.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team1157.robot.subsystems.GearManipSubsys;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -58,7 +58,7 @@ public class Robot extends IterativeRobot {
     double centerX = 0.0;
 
     public static final DriveTrain driveTrain = new DriveTrain();
-    public static final HangGearSubsys hangGearSubsys = new HangGearSubsys();
+    public static final GearManipSubsys hangGearSubsys = new GearManipSubsys();
     public static final ADXRS450_Gyro gyro = new ADXRS450_Gyro();
     
     public long millis = 0; // _TIMER_

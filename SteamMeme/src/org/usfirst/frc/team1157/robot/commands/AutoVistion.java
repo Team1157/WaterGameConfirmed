@@ -98,11 +98,11 @@ public class AutoVistion extends Command {
 		SmartDashboard.putNumber("speedX", speedX);
 		SmartDashboard.putNumber("turnSpeed", turnSpeed);
 		finished = isTimedOut();
-		if(Robot.hangGearSubsys.isSwitchSet()) {
-		    finished = true;
-		    Robot.driveTrain.stop();
-		}
-		
+//		if(Robot.hangGearSubsys.isSwitchSet()) {
+//		    finished = true;
+//		    Robot.driveTrain.stop();
+//		}
+//		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
