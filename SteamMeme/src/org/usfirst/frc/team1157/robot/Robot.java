@@ -52,8 +52,8 @@ public class Robot extends IterativeRobot {
 
     SendableChooser<Command> chooser = new SendableChooser<>();
 
-    private static final int IMG_WIDTH = 1280;
-    private static final int IMG_HEIGHT = 720;
+    private static final int IMG_WIDTH = 640;
+    private static final int IMG_HEIGHT = 360;
 
     double centerX = 0.0;
 

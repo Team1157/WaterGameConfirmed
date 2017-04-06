@@ -1,5 +1,8 @@
 package org.usfirst.frc.team1157.robot;
 
+import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Relay;
 //import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
@@ -25,7 +28,8 @@ public class RobotMap {
 	// number and the module. For example you with a rangefinder:
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
-	
+	public static DigitalInput limitSwitch = new DigitalInput(0);
+	public static Counter counter = new Counter(limitSwitch);
 	public static Spark rollerMotor = new Spark(1);
 	public static int frontLeftMotor = 9;
 	public static int frontRightMotor = 6;

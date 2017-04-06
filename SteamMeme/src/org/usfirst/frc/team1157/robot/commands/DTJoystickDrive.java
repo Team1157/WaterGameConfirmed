@@ -31,6 +31,13 @@ public class DTJoystickDrive extends Command {
     protected void execute() {
     	
     		twistDamp = SmartDashboard.getNumber("Twist Damp", twistDamp);
+    		if (OI.stick2.getRawButton(2)) {
+    		    speedDamp = 0.5;
+    		    twistDamp = 0.3;
+    		} else {
+    		    speedDamp = 1;
+    		    twistDamp = 0.6;
+    		}
     		//speedDamp = SmartDashboard.getNumber("Speed Damp", speedDamp);
     		Robot.driveTrain.displayEncoderVelocity();
     		if (OI.stick2.getTwist() > 0.1 || OI.stick2.getTwist() < -0.1 || OI.stick2.getX() > 0.1

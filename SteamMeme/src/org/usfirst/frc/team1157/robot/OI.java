@@ -12,6 +12,7 @@ import org.usfirst.frc.team1157.robot.commands.ConstantLeft;
 import org.usfirst.frc.team1157.robot.commands.ConstantRight;
 import org.usfirst.frc.team1157.robot.commands.GearManipClose;
 import org.usfirst.frc.team1157.robot.commands.GearManipOpen;
+import org.usfirst.frc.team1157.robot.commands.GearManipSkillStop;
 import org.usfirst.frc.team1157.robot.commands.RollerMove;
 import org.usfirst.frc.team1157.robot.commands.TurnPiOff;
 /**
@@ -22,27 +23,25 @@ public class OI {
 	public static Joystick stick1 = new Joystick(1);
 	public static Joystick stick2 = new  Joystick(0);
 	public static XboxController rumblePad = new XboxController(2);
-	Button s1b3 = new JoystickButton(stick1, 1);
+	Button s1b1 = new JoystickButton(stick1, 1);
 	Button s1b2 = new JoystickButton(stick1, 2);
-	public Button s1b11 = new JoystickButton(stick1, 11);
-	public Button s1b10 = new JoystickButton(stick1, 10);
-	public Button s2b7 = new JoystickButton(stick2, 7);
-	public Button s2b9 = new JoystickButton(stick2, 9);
-	public Button s2b8 = new JoystickButton(stick2, 8);
-	public Button s2b10 = new JoystickButton(stick2, 10);
-	public Button s2b12 = new JoystickButton(stick2, 12);
+	Button s1b3 = new JoystickButton(stick1, 3);
+	Button s1b7 = new JoystickButton(stick1, 7);
+	Button s1b6 = new JoystickButton(stick1, 6);
+	Button s2b7 = new JoystickButton(stick2, 7);
+	Button s2b9 = new JoystickButton(stick2, 9);
+	Button s2b8 = new JoystickButton(stick2, 8);
+	Button s2b10 = new JoystickButton(stick2, 10);
+	Button s2b12 = new JoystickButton(stick2, 12);
 	//public Button s1b10 = new JoystickButton(stick1, 10);
 	
 	public OI() {
 	    //s1b10.whileHeld(new TurnPiOff());
-		s1b3.whileHeld(new RollerMove(stick1));
-		s2b7.whileHeld(new ConstantForward());
-		s2b9.whileHeld(new ConstantBackward());
-		s2b8.whileHeld(new ConstantRight());
-		s2b10.whileHeld(new ConstantLeft());
+		s1b1.whileHeld(new RollerMove(stick1));
 		s2b12.whileHeld(new AutoTeleVistion());
-		s1b10.whenPressed(new GearManipOpen());
-		s1b11.whenPressed(new GearManipClose());
+		s1b6.whenPressed(new GearManipOpen());
+		s1b7.whenPressed(new GearManipClose());
+		s1b3.whenPressed(new GearManipSkillStop());
 	}
 	
 	

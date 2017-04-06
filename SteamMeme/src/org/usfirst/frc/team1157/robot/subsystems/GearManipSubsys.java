@@ -14,7 +14,7 @@ public class GearManipSubsys extends Subsystem {
     static Counter counter = new Counter(limitSwitch);
     static DigitalInput limitSwitch2 = new DigitalInput(2);
     static Counter counter2 = new Counter(limitSwitch2);
-    static Relay relay = new Relay(0, Relay.Direction.kForward);
+    static Relay relay = new Relay(0, Relay.Direction.kBoth);
 
     public GearManipSubsys() {
 
@@ -44,7 +44,7 @@ public class GearManipSubsys extends Subsystem {
     }
 
     public void Close() {
-	relay.set(Relay.Value.kForward);
+	relay.set(Relay.Value.kReverse);
     }
 
     public void Stop() {

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team1157.robot.commands;
 
 import org.usfirst.frc.team1157.robot.Robot;
+import org.usfirst.frc.team1157.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
@@ -36,7 +37,7 @@ public class AutoVistion extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.hangGearSubsys.initializeCounter();
+		RobotMap.counter.reset();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -86,9 +87,9 @@ public class AutoVistion extends Command {
 		    SmartDashboard.putBoolean("locked", false);
 		    System.out.println("NOT LOCKED");
 		    if(tickker > 25 ) {
-			Robot.driveTrain.driveCartesianMecanum(0, 0.1, turnSpeed, 0);
+			Robot.driveTrain.driveCartesianMecanum(0, 0.25, turnSpeed, 0);
 		    } else {
-			Robot.driveTrain.driveCartesianMecanum(speedX, 0.25, turnSpeed, 0);
+			Robot.driveTrain.driveCartesianMecanum(speedX, 0.35, turnSpeed, 0);
 		    }
 		    tickker++;
 		}
@@ -98,11 +99,12 @@ public class AutoVistion extends Command {
 		SmartDashboard.putNumber("speedX", speedX);
 		SmartDashboard.putNumber("turnSpeed", turnSpeed);
 		finished = isTimedOut();
-//		if(Robot.hangGearSubsys.isSwitchSet()) {
-//		    finished = true;
-//		    Robot.driveTrain.stop();
-//		}
-//		
+		if (RobotMap.counter.get()>0) {
+		    finished = true;
+		    Robot.driveTrain.stop();
+		    Robot.hangGearSubsys.Open();
+		}
+		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
